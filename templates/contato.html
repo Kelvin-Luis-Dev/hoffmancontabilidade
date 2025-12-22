@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+
+{% block title %}Contato - Hoffmann Contabilidade{% endblock %}
+
+{% block content %}
+<section class="contact-hero">
+    <div class="contact-hero-content fade-in">
+        <h1>Vamos conversar?</h1>
+        <p>Estamos prontos para oferecer a melhor solução contábil para o seu negócio.</p>
+    </div>
+</section>
+
+<section class="contact-section fade-in">
+    <div class="contact-container">
+
+        <div class="contact-info">
+            <h2>Canais de Atendimento</h2>
+            <p>Sinta-se à vontade para nos chamar no WhatsApp, enviar um e-mail ou preencher o formulário.</p>
+
+            <div class="info-item"><div>
+                    <h3>Telefone / WhatsApp</h3>
+                    <p>Pablo: (47) 9 8447-4038</p>
+                    <p>Natália: (47) 9 8818-7962</p>
+                </div>
+            </div>
+
+            <div class="info-item">
+                <div>
+                    <h3>E-mail</h3>
+                    <p>hoffmannconsultoriacontabil@gmail.com</p>
+                </div>
+            </div>
+
+            <div class="info-item">
+                <div>
+                    <h3>Localização</h3>
+                    <p>Atendimento 100% Digital</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="contact-form-wrapper">
+            <form id="contact-form">
+                <div class="form-group">
+                    <label for="nome">Nome Completo *</label>
+                    <input type="text" id="nome" name="nome" placeholder="Seu nome ou da sua empresa" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email">E-mail *</label>
+                        <input type="email" id="email" name="email" placeholder="exemplo@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="telefone">Telefone</label>
+                        <input type="text" id="telefone" name="telefone" placeholder="(DD) 99999-9999">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="interesse">Serviço de Interesse</label>
+                    <select id="interesse" name="interesse">
+                        <option value="" disabled selected>-- Selecione --</option>
+                        <option value="Contabilidade Fiscal">Contabilidade/Fiscal</option>
+                        <option value="Imposto de Renda">Imposto de Renda</option>
+                        <option value="Planejamento Tributário">Planejamento Tributário</option>
+                        <option value="Gestão de Folha">Gestão de Folha</option>
+                        <option value="Abertura de Empresa">Abertura de Empresa</option>
+                        <option value="Outros">Outros</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="mensagem">Mensagem *</label>
+                    <textarea id="mensagem" name="mensagem" rows="4" placeholder="Como podemos te ajudar hoje?" required></textarea>
+                </div>
+
+                <button class="btn cta full-width" type="submit" id="btn-submit">Enviar Mensagem</button>
+
+                <div id="form-feedback" style="display:none; margin-top:15px; font-weight: 600;"></div>
+            </form>
+        </div>
+    </div>
+</section>
+
+<script>
+document.getElementById('contact-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const btn = document.getElementById('btn-submit');
+    const feedback = document.getElementById('form-feedback');
+    const formData = new FormData(this);
+
+    // Estado de carregamento
+    btn.disabled = true;
+    btn.textContent = 'Enviando...';
+    feedback.style.display = 'none';
+
+    fetch('/api/contato', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        feedback.style.display = 'block';
+        if(data.status === 'ok') {
+            feedback.style.color = '#27ae60'; // Verde sucesso
+            feedback.textContent = data.message;
+            document.getElementById('contact-form').reset();
+        } else {
+            feedback.style.color = '#c0392b'; // Vermelho erro
+            feedback.textContent = data.message || 'Erro ao enviar.';
+        }
+    })
+    .catch(err => {
+        feedback.style.display = 'block';
+        feedback.style.color = '#c0392b';
+        feedback.textContent = 'Erro de conexão. Tente novamente.';
+    })
+    .finally(() => {
+        btn.disabled = false;
+        btn.textContent = 'Enviar Mensagem';
+    });
+});
+</script>
+{% endblock %}

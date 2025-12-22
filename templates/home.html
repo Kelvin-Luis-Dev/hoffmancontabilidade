@@ -1,0 +1,188 @@
+{% extends "base.html" %}
+{% block title %}Home - Hoffmann Contabilidade{% endblock %}
+{% block content %}
+
+<style>
+  /* 1. O ESTADO INICIAL (Escondido e deslocado para baixo) */
+  .reveal {
+    opacity: 0;
+    transform: translateY(50px); /* Começa 50px para baixo */
+    transition: all 1s cubic-bezier(0.2, 0.8, 0.2, 1); /* Movimento ultra suave "Apple style" */
+    will-change: opacity, transform;
+  }
+
+  /* 2. O ESTADO FINAL (Visível e no lugar certo) */
+  .reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* 3. DELAYS (Para criar a cascata: um depois do outro) */
+  .d-100 { transition-delay: 0.1s; }
+  .d-200 { transition-delay: 0.2s; }
+  .d-300 { transition-delay: 0.3s; }
+  .d-400 { transition-delay: 0.4s; }
+  .d-500 { transition-delay: 0.5s; }
+</style>
+
+<section class="hero-modern">
+  <div class="wrap hero-modern-inner">
+
+    <div class="hero-content">
+      <h1 class="reveal">
+        Estratégias para negócios <br>
+        <strong>de sucesso.</strong>
+      </h1>
+
+      <p class="reveal d-200">
+        Assessoria contábil completa para empresas de todos os portes. Cuidamos da burocracia para que você foque no crescimento e sucesso do seu negócio!
+      </p>
+
+      <div class="hero-buttons reveal d-300">
+        <a class="btn cta-primary" href="{{ url_for('contato_get') }}">
+          Abra sua empresa
+        </a>
+        <a class="btn cta-secondary" href="/servicos">
+          Fazer Orçamento
+        </a>
+      </div>
+
+      <div class="hero-tag reveal d-400">
+      <i class="fas fa-check-circle"></i> Atendimento 100% Digital
+      </div>
+    </div>
+
+<div class="hero-visual reveal d-300">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+
+    <div class="hero-visual-inner">
+      <div class="blob-frame">
+        <div class="image-cutter">
+            <img src="{{ url_for('static', filename='img/pablohome.png') }}"
+                 alt="Pablo Hoffman - Consultoria Contábil"
+                 class="hero-person-img">
+        </div>
+      </div>
+
+    </div>
+</div>
+  </div>
+</section>
+
+<section class="home-services">
+  <h2 class="home-services-title reveal">Nossos principais serviços</h2>
+
+  <div class="home-services-container">
+
+    {% for s in services[:3] %}
+    <div class="home-service-item reveal {% if loop.index is even %}reverse{% endif %}">
+
+      <div class="home-service-image-wrapper image-reveal-wrapper">
+        <img src="{{ url_for('static', filename='img/' + s.image) }}"
+             alt="{{ s.title }}"
+             class="home-service-image">
+      </div>
+
+      <div class="home-service-text reveal d-200">
+        <h3>{{ s.title }}</h3>
+        <p>{{ s.excerpt }}</p>
+       <a href="/servicos?anchor={{ s.id }}" class="home-service-link">
+        Saiba mais <span class="arrow"></span></a>
+      </div>
+
+    </div>
+    {% endfor %}
+
+  </div>
+</section>
+
+<section class="faq-section">
+  <div class="faq-overlay"></div>
+
+  <div class="wrap faq-content">
+    <h2 class="faq-title reveal">Perguntas Frequentes</h2>
+
+    <div class="faq-grid">
+
+      <details class="faq-item reveal d-100">
+        <summary>Quanto custa para abrir uma empresa?</summary>
+        <p>O custo varia de acordo com o estado e o tipo de empresa. No entanto, aqui na Hoffmann, oferecemos condições especiais e cuidamos de toda a burocracia para você não ter surpresas.</p>
+      </details>
+
+      <details class="faq-item reveal d-200">
+        <summary>Preciso de um contador para abrir minha empresa?</summary>
+        <p>Sim, é necessário ter um contador para realizar a abertura da empresa. Além da obrigatoriedade, ter um especialista garante que você pagará o menor imposto possível dentro da lei.</p>
+      </details>
+
+      <details class="faq-item reveal d-300">
+        <summary>O que é um Contrato Social?</summary>
+        <p>É a certidão de nascimento da empresa. Nele constam as regras, quem são os sócios, o capital investido e as atividades que a empresa vai exercer.</p>
+      </details>
+
+      <details class="faq-item reveal d-400">
+        <summary>Como funciona o atendimento 100% digital?</summary>
+        <p>Você é atendido via WhatsApp, E-mail ou Reunião Online com agilidade. Seus documentos ficam na nuvem e você não precisa vir ao escritório físico para resolver o dia a dia.</p>
+      </details>
+
+    </div>
+  </div>
+</section>
+
+<section class="diferenciais-section">
+    <div class="dif-container">
+
+        <div class="dif-img-wrapper reveal">
+            <div class="dif-img-border"></div>
+            <img src="static/img/escolherahoffmann.png" alt="Diferenciais Hoffmann">
+        </div>
+
+        <div class="dif-text reveal d-200">
+    <h2>Nossos Diferenciais</h2>
+
+    <p>Entender a necessidade do nosso cliente é a nossa prioridade! Nosso diferencial está baseado em três pilares essenciais:</p>
+
+    <ul class="lista-diferenciais">
+        <li>Atendimento personalizado</li>
+        <li>Compromisso com a conformidade</li>
+        <li>Suporte estratégico</li>
+    </ul>
+
+    <p class="cta-text">Entre em contato conosco e descubra o jeito Hoffmann de fazer contabilidade.</p>
+</div>
+
+    </div>
+</section>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+
+    // Configura o "Olheiro" (IntersectionObserver)
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px', // Dispara assim que entrar na tela
+      threshold: 0.1     // 10% do elemento visível já ativa
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        // Se o elemento entrou na tela...
+        if (entry.isIntersecting) {
+          // ...Adiciona a classe 'active' que faz ele subir e aparecer
+          entry.target.classList.add('active');
+
+          // (Opcional) Para de observar depois que animou 1 vez
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    // Manda o olheiro vigiar tudo que tem a classe .reveal
+    document.querySelectorAll('.reveal').forEach((el) => {
+      observer.observe(el);
+    });
+
+  });
+</script>
+
+{% endblock %}
