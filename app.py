@@ -23,14 +23,10 @@ def create_app():
     app.config['MAIL_USE_TLS'] = True
     app.config['MAIL_USE_SSL'] = False
 
-    # Coloque seu e-mail completo aqui
-    app.config['MAIL_USERNAME'] = 'hoffmannemailrecebidos@gmail.com'
-
-    # COLE AQUI A SENHA DE 16 LETRAS QUE O GOOGLE GEROU (sem espaços)
-    app.config['MAIL_PASSWORD'] = 'joxztyrsxgoiijwa'
-
-    # O remetente padrão DEVE ser o mesmo e-mail da conta para evitar bloqueio
-    app.config['MAIL_DEFAULT_SENDER'] = 'hoffmannemailrecebidos@gmail.com'
+    # ALTERE AS 3 LINHAS ABAIXO PARA ESTE FORMATO:
+    app.config['MAIL_USERNAME'] = os.environ.get('MAIL_USERNAME')
+    app.config['MAIL_PASSWORD'] = os.environ.get('MAIL_PASSWORD')
+    app.config['MAIL_DEFAULT_SENDER'] = os.environ.get('MAIL_USERNAME')
 
     # Inicializa o Mail com a app configurada
     mail.init_app(app)
