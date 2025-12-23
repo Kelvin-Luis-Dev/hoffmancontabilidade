@@ -196,12 +196,9 @@ def enviar_email_notificacao(data):
     Função dedicada para montar e enviar o e-mail usando Flask-Mail.
     """
     assunto = f"Novo Contato Site: {data.get('nome')}"
-
     # Destinatário: Defina quem recebe o alerta (você mesmo)
     destinatarios = ['hoffmannconsultoriacontabil@gmail.com']
-
-    msg = Message(subject=assunto,
-                  recipients=destinatarios)
+    msg = Message(subject=assunto, recipients=destinatarios)
 
     # Corpo do E-mail
     msg.body = f"""
