@@ -3,6 +3,9 @@ from flask import Flask, render_template, request, redirect, url_for, jsonify, f
     Response, current_app
 from flask_mail import Mail, Message  # Importando Flask-Mail
 import sqlite3
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 
 # Inicializa o Mail globalmente
 mail = Mail()
@@ -189,20 +192,26 @@ def init_db(app):
         conn.commit()
         conn.close()
 
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 
 def enviar_email_notificacao(data):
-    assunto = f"Novo Contato Site: {data.get('nome')}"
-    destinatarios = ['hoffmannconsultoriacontabil@gmail.com'] # Seu Gmail pessoal
-    
-    # Adicionamos o 'sender' explicitamente aqui
-    msg = Message(subject=assunto, 
-                  sender=current_app.config['MAIL_DEFAULT_SENDER'],
-                  recipients=destinatarios)
+    # Pega as configurações direto do Render
+    smtp_server = "smtp.resend.com"
+    smtp_port = 587
+    sender_email = os.environ.get('MAIL_DEFAULT_SENDER')
+    receiver_email = "hoffmannconsultoriacontabil@gmail.com"
+    password = os.environ.get('MAIL_PASSWORD')
 
-    # Corpo do E-mail
-    msg.body = f"""
+    # Monta a mensagem manualmente para evitar erros de biblioteca
+    message = MIMEMultipart()
+    message["From"] = sender_email
+    message["To"] = receiver_email
+    message["Subject"] = f"Novo Contato Site: {data.get('nome')}"
+
+    corpo = f"""
     Olá! Um novo contato foi recebido pelo site.
-
     ------------------------------------------
     Nome: {data.get('nome')}
     E-mail: {data.get('email')}
@@ -213,10 +222,14 @@ def enviar_email_notificacao(data):
     {data.get('mensagem')}
     ------------------------------------------
     """
+    message.attach(MIMEText(corpo, "plain"))
 
-    # Envia de fato
-    mail.send(msg)
-
+    # Envia de forma direta (sem passar pelo Flask-Mail)
+    server = smtplib.SMTP(smtp_server, smtp_port)
+    server.starttls()  # Ativa a segurança obrigatória do Resend
+    server.login("resend", password)
+    server.sendmail(sender_email, receiver_email, message.as_string())
+    server.quit()
 
 # --- EXECUÇÃO ---
 # Necessário para rodar com 'python app.py'
