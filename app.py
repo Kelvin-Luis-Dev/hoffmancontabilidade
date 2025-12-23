@@ -17,16 +17,15 @@ def create_app():
         DATABASE=os.path.join(app.instance_path, 'contatos.db'),
     )
 
-    # --- CONFIGURAÇÃO DE EMAIL (GMAIL REAL) ---
-    app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+    # --- CONFIGURAÇÃO DE EMAIL (GMAIL Resend) ---
+    app.config['MAIL_SERVER'] = 'smtp.resend.com'
     app.config['MAIL_PORT'] = 587
     app.config['MAIL_USE_TLS'] = True
     app.config['MAIL_USE_SSL'] = False
 
-    # ALTERE AS 3 LINHAS ABAIXO PARA ESTE FORMATO:
-    app.config['MAIL_USERNAME'] = os.environ.get('MAIL_USERNAME')
+    app.config['MAIL_USERNAME'] = 'resend'
     app.config['MAIL_PASSWORD'] = os.environ.get('MAIL_PASSWORD')
-    app.config['MAIL_DEFAULT_SENDER'] = os.environ.get('MAIL_USERNAME')
+    app.config['MAIL_DEFAULT_SENDER'] = os.environ.get('MAIL_DEFAULT_SENDER')
 
     # Inicializa o Mail com a app configurada
     mail.init_app(app)
@@ -192,13 +191,13 @@ def init_db(app):
 
 
 def enviar_email_notificacao(data):
-    """
-    Função dedicada para montar e enviar o e-mail usando Flask-Mail.
-    """
     assunto = f"Novo Contato Site: {data.get('nome')}"
-    # Destinatário: Defina quem recebe o alerta (você mesmo)
-    destinatarios = ['hoffmannconsultoriacontabil@gmail.com']
-    msg = Message(subject=assunto, recipients=destinatarios)
+    destinatarios = ['hoffmannconsultoriacontabil@gmail.com'] # Seu Gmail pessoal
+    
+    # Adicionamos o 'sender' explicitamente aqui
+    msg = Message(subject=assunto, 
+                  sender=current_app.config['MAIL_DEFAULT_SENDER'],
+                  recipients=destinatarios)
 
     # Corpo do E-mail
     msg.body = f"""
