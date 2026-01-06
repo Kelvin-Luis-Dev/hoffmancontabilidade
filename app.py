@@ -25,12 +25,12 @@ def create_app():
         DATABASE=os.path.join(app.instance_path, 'contatos.db'),
     )
 
-   # --- CONFIGURAÇÃO DE EMAIL (Dinâmica via Environment Variables) ---
-    app.config['MAIL_SERVER'] = os.environ.get('MAIL_SERVER', 'smtp.resend.com')
-    app.config['MAIL_PORT'] = int(os.environ.get('MAIL_PORT', 465))
-    app.config['MAIL_USE_TLS'] = os.environ.get('MAIL_USE_TLS', 'False') == 'True'
-    app.config['MAIL_USE_SSL'] = os.environ.get('MAIL_USE_SSL', 'True') == 'True'
-    app.config['MAIL_USERNAME'] = os.environ.get('MAIL_USERNAME', 'resend')
+  # --- CONFIGURAÇÃO DE EMAIL (Versão Final de Compatibilidade) ---
+    app.config['MAIL_SERVER'] = 'smtp.resend.com'
+    app.config['MAIL_PORT'] = 2465  # Porta alternativa para evitar Timeout
+    app.config['MAIL_USE_TLS'] = False
+    app.config['MAIL_USE_SSL'] = True
+    app.config['MAIL_USERNAME'] = 'resend'
     app.config['MAIL_PASSWORD'] = os.environ.get('MAIL_PASSWORD')
     app.config['MAIL_DEFAULT_SENDER'] = os.environ.get('MAIL_DEFAULT_SENDER')
 
