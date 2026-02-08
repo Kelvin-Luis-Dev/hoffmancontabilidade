@@ -144,3 +144,92 @@ img {
 
 .cta-primary { background: var(--bordo); color: white; }
 .cta-secondary { border: 2px solid var(--bordo); color: var(--bordo); }
+
+/* --- ESTILOS GLOBAIS DE PÁGINA --- */
+.section-padding {
+    padding: 60px 0;
+}
+
+.page-header {
+    background-color: var(--terroso);
+    color: white;
+    padding: 80px 0 60px;
+    text-align: center;
+}
+
+.page-header h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin-bottom: 10px;
+}
+
+/* --- GRID RESPONSIVO --- */
+.grid-2-cols {
+    display: grid;
+    grid-template-columns: 1fr; /* 1 coluna no mobile */
+    gap: 40px;
+    align-items: center;
+}
+
+@media (min-width: 992px) {
+    .grid-2-cols {
+        grid-template-columns: 1fr 1fr; /* 2 colunas no desktop */
+        gap: 80px;
+    }
+}
+
+/* --- ELEMENTOS DA PÁGINA SOBRE --- */
+.quote-box {
+    margin: 30px 0;
+    padding-left: 20px;
+    border-left: 4px solid var(--dourado);
+}
+
+.quote-box .highlight {
+    font-weight: 700;
+    color: var(--bordo);
+    text-transform: uppercase;
+    font-size: 1.1rem;
+}
+
+/* --- CARD DE FOTO PREMIUM --- */
+.cards-wrapper {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.photo-card-premium {
+    position: relative;
+    max-width: 350px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    transition: var(--transition);
+}
+
+.photo-card-premium img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.photo-card-premium:hover img {
+    transform: scale(1.05);
+}
+
+.card-label {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--bordo);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 50px;
+    white-space: nowrap;
+    font-weight: 600;
+    font-size: 0.9rem;
+    border: 1px solid var(--dourado);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
