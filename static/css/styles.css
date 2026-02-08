@@ -575,7 +575,7 @@ header.site-header {
 .hero-person-img {
     width: auto;
     /* Aumentado para 120% para a cabeça "pular" para fora do círculo */
-    height: 110% !important;
+    height: 100% !important;
     max-width: 150%;
     object-fit: contain;
     z-index: 11;
@@ -583,7 +583,7 @@ header.site-header {
     /* Ajuste para alinhar na base e crescer para cima */
     margin-bottom: 0;
     position: relative;
-    bottom: -25px;
+    bottom: -55px;
 }
 /* Blobs de fundo - Usando VW para escalar com o navegador */
 .blob {
