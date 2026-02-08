@@ -555,7 +555,7 @@ header.site-header {
     width: 100%;
     height: 100%;
     background-color: var(--terracota);
-    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+    border-radius: 30% 50% 60% 20% / 30% 40% 50% 40%;
     animation: morph 8s ease-in-out infinite;
     /* Oculta apenas o que sai pelas laterais e base do círculo */
     overflow: hidden;
@@ -588,8 +588,8 @@ header.site-header {
 /* Blobs de fundo - Usando VW para escalar com o navegador */
 .blob {
   position: absolute;
-  top: 35%;
-  left: 35%;
+  top: 50%;
+  left: 50%;
   transform: translate(-50%, -50%);
   border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
   z-index: 1;
