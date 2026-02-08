@@ -3,138 +3,40 @@
 {% block content %}
 
 <style>
-  /* 1. O ESTADO INICIAL (Escondido e deslocado para baixo) */
-  .reveal {
-    opacity: 0;
-    transform: translateY(50px);
-    transition: all 1s cubic-bezier(0.2, 0.8, 0.2, 1);
-    will-change: opacity, transform;
-  }
-
-  /* 2. O ESTADO FINAL (Visível e no lugar certo) */
-  .reveal.active {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* 3. DELAYS */
+  .reveal { opacity: 0; transform: translateY(50px); transition: all 1s cubic-bezier(0.2, 0.8, 0.2, 1); will-change: opacity, transform; }
+  .reveal.active { opacity: 1; transform: translateY(0); }
   .d-100 { transition-delay: 0.1s; }
   .d-200 { transition-delay: 0.2s; }
   .d-300 { transition-delay: 0.3s; }
   .d-400 { transition-delay: 0.4s; }
   .d-500 { transition-delay: 0.5s; }
 
-  /* ============================================================
-     AJUSTES DE RESPONSIVIDADE UNIVERSAL
-     ============================================================ */
-  
-  /* Ajuste para telas menores (Celulares e Tablets) */
+  /* Ajuste Mobile: Removido o reset agressivo para manter identidades visuais */
   @media (max-width: 992px) {
-    .hero-modern-inner {
-      flex-direction: column-reverse; /* Imagem em cima ou embaixo conforme preferir, aqui inverti para o texto vir primeiro */
-      text-align: center;
-      padding: 40px 20px;
-    }
-
-    .hero-content {
-      width: 100%;
-      margin-top: 30px;
-    }
-
-    .hero-buttons {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      align-items: center;
-    }
-
-    .hero-buttons .btn {
-      width: 100%;
-      max-width: 300px;
-      margin: 0 !important;
-    }
-
-    .hero-visual {
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      margin-bottom: 20px;
-    }
-
-    /* Serviços */
-    .home-service-item {
-      flex-direction: column !important; /* Força empilhar mesmo os "reverse" */
-      text-align: center;
-      gap: 20px;
-      margin-bottom: 40px;
-    }
-
-    .home-service-image-wrapper {
-      width: 100% !important;
-      max-width: 400px;
-      margin: 0 auto;
-    }
-
-    /* FAQ */
-    .faq-grid {
-      grid-template-columns: 1fr; /* Uma coluna só */
-    }
-
-    /* Diferenciais */
-    .dif-container {
-      flex-direction: column;
-      text-align: center;
-      padding: 20px;
-    }
-
-    .dif-img-wrapper {
-      width: 100%;
-      max-width: 350px;
-      margin: 0 auto 30px;
-    }
-
-    .lista-diferenciais {
-      display: inline-block;
-      text-align: left;
-    }
-    
-    /* Ajuste de títulos para não quebrarem layout */
-    h1 { font-size: 1.8rem !important; }
-    h2 { font-size: 1.6rem !important; }
+    .hero-modern-inner { flex-direction: column-reverse; text-align: center; padding: 40px 20px; }
+    .hero-content { width: 100%; margin-top: 30px; }
+    .hero-buttons { display: flex; flex-direction: row; gap: 10px; justify-content: center; flex-wrap: wrap; }
+    .hero-buttons .btn { flex: 1; min-width: 140px; margin: 0 !important; font-size: 0.9rem; padding: 0.8rem 1rem; }
+    .hero-visual { width: 100%; display: flex; justify-content: center; margin-bottom: 20px; }
+    .home-service-item { flex-direction: column !important; text-align: center; gap: 20px; margin-bottom: 40px; }
+    .home-service-image-wrapper { width: 100% !important; max-width: 400px; margin: 0 auto; transform: skewX(-10deg) !important; }
+    .faq-grid { grid-template-columns: 1fr; }
+    .dif-container { flex-direction: column; text-align: center; padding: 20px; }
+    .dif-img-wrapper { width: 100%; max-width: 350px; margin: 0 auto 30px; transform: skewX(-10deg) !important; }
+    h1 { font-size: 2.2rem !important; }
   }
-
-  /* Wrap universal para evitar que o conteúdo cole nas bordas */
-  .wrap {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-    box-sizing: border-box;
-  }
+  .wrap { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 20px; box-sizing: border-box; }
 </style>
 
 <section class="hero-modern">
   <div class="wrap hero-modern-inner">
-
     <div class="hero-content">
-      <h1 class="reveal">
-        Estratégias para negócios <br>
-        <strong>de sucesso.</strong>
-      </h1>
-
-      <p class="reveal d-200">
-        Assessoria contábil completa para empresas de todos os portes. Cuidamos da burocracia para que você foque no crescimento e sucesso do seu negócio!
-      </p>
-
+      <h1 class="reveal">Estratégias para negócios <br><strong>de sucesso.</strong></h1>
+      <p class="reveal d-200">Assessoria contábil completa para empresas de todos os portes. Cuidamos da burocracia para que você foque no crescimento e sucesso do seu negócio!</p>
       <div class="hero-buttons reveal d-300">
-        <a class="btn cta-primary" href="{{ url_for('contato_get') }}">
-          Abra sua empresa
-        </a>
-        <a class="btn cta-secondary" href="/servicos">
-          Fazer Orçamento
-        </a>
+        <a class="btn cta-primary" href="{{ url_for('contato_get') }}">Abra sua empresa</a>
+        <a class="btn cta-secondary" href="/servicos">Fazer Orçamento</a>
       </div>
-
       <div class="hero-tag reveal d-400">
         <i class="fas fa-check-circle"></i> Atendimento 100% Digital
       </div>
@@ -143,14 +45,10 @@
     <div class="hero-visual reveal d-300">
         <div class="blob blob-1"></div>
         <div class="blob blob-2"></div>
-
         <div class="hero-visual-inner">
           <div class="blob-frame">
             <div class="image-cutter">
-                <img src="{{ url_for('static', filename='img/pablohome.png') }}"
-                     alt="Pablo Hoffman - Consultoria Contábil"
-                     class="hero-person-img"
-                     style="max-width: 100%; height: auto;">
+                <img src="{{ url_for('static', filename='img/pablohome.png') }}" alt="Pablo Hoffman" class="hero-person-img">
             </div>
           </div>
         </div>
@@ -160,26 +58,18 @@
 
 <section class="home-services">
   <div class="wrap">
-      <h2 class="home-services-title reveal" style="text-align: center; margin-bottom: 40px;">Nossos principais serviços</h2>
-
+      <h2 class="home-services-title reveal">Nossos principais serviços</h2>
       <div class="home-services-container">
         {% for s in services[:3] %}
-        <div class="home-service-item reveal {% if loop.index is even %}reverse{% endif %}" style="display: flex; align-items: center; margin-bottom: 60px;">
-
-          <div class="home-service-image-wrapper image-reveal-wrapper" style="flex: 1;">
-            <img src="{{ url_for('static', filename='img/' + s.image) }}"
-                 alt="{{ s.title }}"
-                 class="home-service-image" 
-                 style="width: 100%; border-radius: 15px;">
+        <div class="home-service-item reveal {% if loop.index is even %}reverse{% endif %}">
+          <div class="home-service-image-wrapper">
+            <img src="{{ url_for('static', filename='img/' + s.image) }}" alt="{{ s.title }}" class="home-service-image">
           </div>
-
-          <div class="home-service-text reveal d-200" style="flex: 1; padding: 20px;">
+          <div class="home-service-text reveal d-200">
             <h3>{{ s.title }}</h3>
             <p>{{ s.excerpt }}</p>
-            <a href="/servicos?anchor={{ s.id }}" class="home-service-link">
-             Saiba mais <span class="arrow"></span></a>
+            <a href="/servicos?anchor={{ s.id }}" class="home-service-link">Saiba mais <span class="arrow"></span></a>
           </div>
-
         </div>
         {% endfor %}
       </div>
@@ -189,69 +79,45 @@
 <section class="faq-section">
   <div class="faq-overlay"></div>
   <div class="wrap faq-content">
-    <h2 class="faq-title reveal" style="text-align: center;">Perguntas Frequentes</h2>
+    <h2 class="faq-title reveal">Perguntas Frequentes</h2>
     <div class="faq-grid">
       <details class="faq-item reveal d-100">
         <summary>Quanto custa para abrir uma empresa?</summary>
-        <p>O custo varia de acordo com o estado e o tipo de empresa. No entanto, aqui na Hoffmann, oferecemos condições especiais e cuidamos de toda a burocracia para você não ter surpresas.</p>
+        <p>O custo varia de acordo com o estado e o tipo de empresa.</p>
       </details>
       <details class="faq-item reveal d-200">
         <summary>Preciso de um contador para abrir minha empresa?</summary>
-        <p>Sim, é necessário ter um contador para realizar a abertura da empresa. Além da obrigatoriedade, ter um especialista garante que você pagará o menor imposto possível dentro da lei.</p>
-      </details>
-      <details class="faq-item reveal d-300">
-        <summary>O que é um Contrato Social?</summary>
-        <p>É a certidão de nascimento da empresa. Nele constam as regras, quem são os sócios, o capital investido e as atividades que a empresa vai exercer.</p>
-      </details>
-      <details class="faq-item reveal d-400">
-        <summary>Como funciona o atendimento 100% digital?</summary>
-        <p>Você é atendido via WhatsApp, E-mail ou Reunião Online com agilidade. Seus documentos ficam na nuvem e você não precisa vir ao escritório físico para resolver o dia a dia.</p>
+        <p>Sim, é necessário ter um contador para realizar a abertura da empresa.</p>
       </details>
     </div>
   </div>
 </section>
 
 <section class="diferenciais-section">
-    <div class="wrap dif-container" style="display: flex; align-items: center; gap: 40px;">
-        <div class="dif-img-wrapper reveal" style="flex: 1;">
+    <div class="wrap dif-container">
+        <div class="dif-img-wrapper reveal">
             <div class="dif-img-border"></div>
-            <img src="static/img/escolherahoffmann.png" alt="Diferenciais Hoffmann" style="width: 100%; border-radius: 20px;">
+            <img src="static/img/escolherahoffmann.png" alt="Diferenciais Hoffmann">
         </div>
-
-        <div class="dif-text reveal d-200" style="flex: 1;">
+        <div class="dif-text reveal d-200">
             <h2>Nossos Diferenciais</h2>
-            <p>Entender a necessidade do nosso cliente é a nossa prioridade! Nosso diferencial está baseado em três pilares essenciais:</p>
+            <p>Entender a necessidade do nosso cliente é a nossa prioridade!</p>
             <ul class="lista-diferenciais">
                 <li>Atendimento personalizado</li>
                 <li>Compromisso com a conformidade</li>
                 <li>Suporte estratégico</li>
             </ul>
-            <p class="cta-text">Entre em contato conosco e descubra o jeito Hoffmann de fazer contabilidade.</p>
         </div>
     </div>
 </section>
 
 <script>
   document.addEventListener("DOMContentLoaded", function() {
-    const observerOptions = {
-      root: null,
-      rootMargin: '0px',
-      threshold: 0.1
-    };
-
-    const observer = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('active');
-          observer.unobserve(entry.target);
-        }
-      });
+    const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('active'); observer.unobserve(entry.target); } });
     }, observerOptions);
-
-    document.querySelectorAll('.reveal').forEach((el) => {
-      observer.observe(el);
-    });
+    document.querySelectorAll('.reveal').forEach((el) => { observer.observe(el); });
   });
 </script>
-
 {% endblock %}
