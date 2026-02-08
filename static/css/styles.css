@@ -213,3 +213,83 @@ body {
   .visual-container { height: 350px; }
   .cta-secondary { margin: 10px 0 0 0; }
 }
+
+/* Estilo do Botão Hamburger */
+.nav-toggle {
+    display: none; /* Escondido no desktop */
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1100;
+}
+
+.hamburger {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background: #fff;
+    position: relative;
+    transition: 0.3s;
+}
+
+.hamburger::before, .hamburger::after {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 3px;
+    background: #fff;
+    left: 0;
+    transition: 0.3s;
+}
+
+.hamburger::before { top: -8px; }
+.hamburger::after { bottom: -8px; }
+
+/* Transformação para o "X" quando aberto */
+.main-nav.open + .header-actions .hamburger { background: transparent; }
+.main-nav.open + .header-actions .hamburger::before { transform: rotate(45deg); top: 0; }
+.main-nav.open + .header-actions .hamburger::after { transform: rotate(-45deg); bottom: 0; }
+
+@media (max-width: 992px) {
+    .nav-toggle { display: block; }
+
+    .main-nav {
+        position: fixed;
+        top: 0;
+        right: -100%; /* Escondido */
+        width: 80%;
+        height: 100vh;
+        background: var(--terroso);
+        padding: 100px 40px;
+        transition: 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        z-index: 1000;
+        box-shadow: -10px 0 30px rgba(0,0,0,0.3);
+    }
+
+    .main-nav.open {
+        right: 0; /* Desliza para dentro */
+    }
+
+    .nav-list {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .nav-list a {
+        font-size: 1.2rem;
+    }
+
+    /* Submenu Mobile */
+    .dropdown-menu {
+        position: static;
+        background: rgba(255,255,255,0.05);
+        display: none;
+        box-shadow: none;
+        margin-top: 10px;
+    }
+
+    .has-dropdown.active .dropdown-menu {
+        display: block;
+    }
+}
