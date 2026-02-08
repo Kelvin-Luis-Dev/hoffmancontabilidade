@@ -523,16 +523,18 @@ header.site-header {
 }
 /* --- ELEMENTO VISUAL COM FOTO E BLOBS (ESTRUTURA BASE) --- */
 
+/* --- CORREÇÃO DA FOTO DO PABLO (CABEÇA E POSIÇÃO) --- */
 .hero-visual {
   flex: 1;
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 400px; /* Altura flexível */
-  height: 60vh;      /* Ocupa 60% da altura da tela */
+  min-height: 400px;
+  height: 60vh;
   max-height: 600px;
   width: 100%;
+  overflow: visible !important; /* Permite que a cabeça saia do container pai */
 }
 
 .hero-visual-inner {
@@ -557,30 +559,26 @@ header.site-header {
   overflow: hidden;
 }
 
-/* CORREÇÃO DA FOTO DO PABLO (Para não cortar a cabeça) */
 .image-cutter {
     position: relative;
     z-index: 10;
     width: 100%;
-    height: 100%; /* Ajustado para 100% */
+    height: 100%;
     display: flex;
     align-items: flex-end;
     justify-content: center;
-    overflow: visible !important; /* Essencial para a cabeça sair do blob */
+    overflow: visible !important; /* ESSENCIAL: não corta o que sai do círculo */
 }
-
 .hero-person-img {
     width: auto;
-    height: 115%; /* Aumentado para 115% para a cabeça "sair" por cima */
-    max-width: 140%;
+    height: 125% !important; /* Aumentado para 125% para a cabeça "subir" bastante */
+    max-width: 150%;
     object-fit: contain;
     z-index: 11;
     transform-origin: bottom center;
-    margin-bottom: 0;
     position: relative;
-    bottom: 0; /* Ajuste se necessário para subir a foto */
+    bottom: -5px; /* Ajuste fino na base */
 }
-
 /* Blobs de fundo - Usando VW para escalar com o navegador */
 .blob {
   position: absolute;
@@ -1654,12 +1652,15 @@ details[open] summary::after { transform: rotate(45deg); }
   }
 }
 
-  /* 6. BOTÕES CTA (CENTRALIZADOS) */
-  .hero-buttons {
-    justify-content: center !important;
-    flex-direction: column !important;
-    gap: 15px !important;
-  }
+/* --- CORREÇÃO DOS BOTÕES LADO A LADO (DESKTOP) --- */
+.hero-buttons {
+    display: flex !important;
+    flex-direction: row !important; /* Garante lado a lado */
+    gap: 20px;
+    margin-bottom: 2rem;
+    justify-content: flex-start;
+    flex-wrap: nowrap; /* Impede que caia um pra baixo do outro no desktop */
+}
 
   .btn.cta-primary, .btn.cta-secondary {
     width: 100% !important;
