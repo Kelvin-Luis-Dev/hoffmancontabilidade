@@ -1,43 +1,68 @@
-{% extends "base.html" %}
-{% block title %}Serviços - Hoffmann Contabilidade{% endblock %}
+{% extends 'base.html' %}
 
 {% block content %}
-<div class="services-page">
-    <section class="page-header">
-        <div class="container fade-in">
-            <h1>Soluções Contábeis</h1>
-            <p>Estratégia e conformidade para impulsionar o seu negócio.</p>
-        </div>
-    </section>
+<section class="bg-bordo text-white py-16">
+    <div class="container mx-auto px-4 text-center">
+        <h1 class="text-4xl md:text-5xl font-bold mb-4">Soluções Contábeis</h1>
+        <p class="text-amarelo text-lg font-medium">Estratégia e conformidade para impulsionar o seu negócio.</p>
+    </div>
+</section>
 
-    <section class="services-list section-padding">
-        <div class="container">
-            {% for s in services %}
-            <div class="service-card reveal {% if loop.index is even %}reverse{% endif %}" id="{{ s.id }}">
-                <div class="service-image">
-                    <div class="image-box">
-                        <img src="{{ url_for('static', filename='img/' + s.image) }}" alt="{{ s.title }}">
+<section class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {% for service in services %}
+            <div id="{{ service.id }}" class="group bg-gray-50 p-8 rounded-3xl border border-gray-100 hover:shadow-xl transition-all duration-300">
+                <div class="flex items-center mb-6">
+                    <div class="w-14 h-14 bg-bordo text-amarelo rounded-2xl flex items-center justify-center text-2xl mr-4 shadow-lg group-hover:scale-110 transition">
+                        <i class="fas 
+                            {% if service.id == 'contabilidade-fiscal' %}fa-file-invoice-dollar
+                            {% elif service.id == 'ir-pf-pj' %}fa-tasks
+                            {% elif service.id == 'planejamento-tributario' %}fa-chart-pie
+                            {% elif service.id == 'escrituracao' %}fa-piggy-bank
+                            {% else %}fa-user-check{% endif %}">
+                        </i>
                     </div>
+                    <h3 class="text-2xl font-bold text-bordo">{{ service.title }}</h3>
                 </div>
-                <div class="service-info">
-                    <h2>{{ s.title }}</h2>
-                    <p>{{ s.body }}</p>
-                    <a href="https://wa.me/5547988187962?text=Olá, gostaria de saber mais sobre {{ s.title }}" 
-                       class="btn-link" target="_blank">
-                        Saiba mais <i class="fas fa-arrow-right"></i>
-                    </a>
+                <p class="text-gray-700 leading-relaxed mb-6">
+                    {{ service.body }}
+                </p>
+                <div class="flex items-center text-amarelo_dark font-bold text-sm">
+                    <i class="fas fa-check mr-2"></i> Atendimento Especializado
                 </div>
             </div>
             {% endfor %}
         </div>
-    </section>
+    </div>
+</section>
 
-    <section class="cta-section section-padding">
-        <div class="container text-center">
-            <h3>Não encontrou o que precisava?</h3>
-            <p>Cada empresa é única. Fale diretamente com nossos especialistas para uma solução personalizada.</p>
-            <a href="https://wa.me/5547988187962" class="btn cta-primary">Falar com Especialista</a>
+<section class="py-16 bg-bordo text-white overflow-hidden relative">
+    <div class="container mx-auto px-4 relative z-10 text-center">
+        <h2 class="text-3xl font-bold mb-6">Não encontrou o que precisava?</h2>
+        <p class="text-gray-300 mb-10 max-w-2xl mx-auto text-lg">
+            Cada empresa é única. Fale diretamente com nossos especialistas para uma solução personalizada e estratégica para o seu modelo de negócio.
+        </p>
+        <div class="flex justify-center">
+            <a href="https://wa.me/5547984474038" class="bg-amarelo text-bordo px-10 py-4 rounded-full font-extrabold text-lg hover:bg-white transition flex items-center shadow-2xl">
+                <i class="fab fa-whatsapp mr-3 text-2xl"></i> FALAR COM ESPECIALISTA
+            </a>
         </div>
-    </section>
-</div>
+    </div>
+    <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2 w-[800px] h-[300px] bg-amarelo opacity-5 rounded-full blur-3xl"></div>
+</section>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const anchor = urlParams.get('anchor');
+        if (anchor) {
+            const element = document.getElementById(anchor);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+                element.classList.add('ring-2', 'ring-amarelo'); // Destaque temporário
+            }
+        }
+    });
+</script>
 {% endblock %}
