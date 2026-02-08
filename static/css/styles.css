@@ -588,8 +588,8 @@ header.site-header {
 /* Blobs de fundo - Usando VW para escalar com o navegador */
 .blob {
   position: absolute;
-  top: 50%;
-  left: 50%;
+  top: 35%;
+  left: 35%;
   transform: translate(-50%, -50%);
   border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
   z-index: 1;
