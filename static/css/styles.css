@@ -233,3 +233,97 @@ img {
     border: 1px solid var(--dourado);
     box-shadow: 0 10px 20px rgba(0,0,0,0.3);
 }
+
+/* --- CONTAINER DE SERVIÇOS --- */
+.service-card {
+    display: flex;
+    flex-direction: column; /* Mobile first: empilhado */
+    gap: 30px;
+    margin-bottom: 80px;
+    align-items: center;
+    text-align: center;
+}
+
+@media (min-width: 992px) {
+    .service-card {
+        flex-direction: row; /* Desktop: lado a lado */
+        text-align: left;
+        gap: 80px;
+    }
+    
+    .service-card.reverse {
+        flex-direction: row-reverse;
+    }
+}
+
+/* --- IMAGENS DOS SERVIÇOS --- */
+.service-image {
+    flex: 1;
+    width: 100%;
+}
+
+.image-box {
+    overflow: hidden;
+    border-radius: 20px;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    background: white; /* Garante fundo limpo */
+}
+
+.image-box img {
+    width: 100%;
+    height: 300px; /* Altura fixa no mobile para harmonia */
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+@media (min-width: 992px) {
+    .image-box img {
+        height: 400px; /* Maior no desktop */
+    }
+}
+
+.service-card:hover .image-box img {
+    transform: scale(1.05);
+}
+
+/* --- TEXTOS E LINKS --- */
+.service-info {
+    flex: 1;
+}
+
+.service-info h2 {
+    color: var(--terroso);
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+}
+
+.service-info p {
+    color: #555;
+    margin-bottom: 25px;
+}
+
+.btn-link {
+    color: var(--bordo);
+    font-weight: 700;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: var(--transition);
+}
+
+.btn-link:hover {
+    gap: 12px;
+    color: var(--terracota);
+}
+
+/* --- SEÇÃO CTA --- */
+.cta-section {
+    background-color: white;
+    border-radius: 30px;
+    margin: 20px;
+}
+
+.text-center {
+    text-align: center;
+}
