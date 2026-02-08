@@ -2,53 +2,42 @@
 {% block title %}Serviços - Hoffmann Contabilidade{% endblock %}
 
 {% block content %}
+<div class="services-page">
+    <section class="page-header">
+        <div class="container fade-in">
+            <h1>Soluções Contábeis</h1>
+            <p>Estratégia e conformidade para impulsionar o seu negócio.</p>
+        </div>
+    </section>
 
+    <section class="services-list section-padding">
+        <div class="container">
+            {% for s in services %}
+            <div class="service-card reveal {% if loop.index is even %}reverse{% endif %}" id="{{ s.id }}">
+                <div class="service-image">
+                    <div class="image-box">
+                        <img src="{{ url_for('static', filename='img/' + s.image) }}" alt="{{ s.title }}">
+                    </div>
+                </div>
+                <div class="service-info">
+                    <h2>{{ s.title }}</h2>
+                    <p>{{ s.body }}</p>
+                    <a href="https://wa.me/5547988187962?text=Olá, gostaria de saber mais sobre {{ s.title }}" 
+                       class="btn-link" target="_blank">
+                        Saiba mais <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
 
-<section class="contact-hero">
-    <div class="contact-hero-content fade-in">
-        <h1>Soluções Contábeis</h1>
-        <p>Da conformidade fiscal à estratégia de crescimento. Descubra como podemos impulsionar o seu negócio.</p>
-    </div>
-</section>
-
-<section class="services-section-premium">
-  <div class="services-container">
-
-    {% for s in services %}
-    <div class="service-row-premium fade-on-scroll {% if loop.index % 2 == 0 %}reverse{% endif %}" id="{{ s.id }}">
-
-      <div class="service-visual">
-          <div class="glow-wrapper">
-            <img src="{{ url_for('static', filename='img/' + s.image) }}" alt="{{ s.title }}" class="service-img-premium">
-            <div class="neon-backdrop"></div>
-          </div>
-      </div>
-
-      <div class="service-content">
-        <h2>{{ s.title }}</h2>
-        <p>{{ s.body }}</p>
-          <a href="https://wa.me/5547988187962?text=Olá,%20gostaria%20de%20saber%20mais%20sobre%20{{ s.title }}" class="home-service-link">
-        Saiba mais <span class="arrow"></span></a>
-      </div>
-
-    </div>
-    {% endfor %}
-
-  </div>
-</section>
-
-<section class="cta-unfound fade-on-scroll">
-    <div class="cta-content">
-        <h3>Não encontrou o que precisava?</h3>
-        <p>Cada empresa é única. Se você tem uma demanda específica ou complexa, fale diretamente com nosso time de especialistas.</p>
-
-        <a href="https://wa.me/5547988187962?text=Olá! Não encontrei exatamente o que buscava no site e gostaria de falar com um especialista."
-           class="btn cta-primary"
-           target="_blank">
-           Fale Conosco
-        </a>
-
-    </div>
-</section>
-
+    <section class="cta-section section-padding">
+        <div class="container text-center">
+            <h3>Não encontrou o que precisava?</h3>
+            <p>Cada empresa é única. Fale diretamente com nossos especialistas para uma solução personalizada.</p>
+            <a href="https://wa.me/5547988187962" class="btn cta-primary">Falar com Especialista</a>
+        </div>
+    </section>
+</div>
 {% endblock %}
