@@ -1,68 +1,49 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
+
+{% block extra_css %}
+<style>
+    .service-section { padding: 80px 0; border-bottom: 1px solid #eee; }
+    .service-section:nth-child(even) { background-color: #fcf9f4; }
+    .service-img { border-radius: 15px; height: 350px; object-fit: cover; width: 100%; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+    .badge-service { background-color: var(--amarelo); color: var(--bordo); padding: 8px 15px; border-radius: 5px; font-weight: bold; margin-bottom: 15px; display: inline-block; }
+</style>
+{% endblock %}
 
 {% block content %}
-<section class="bg-bordo text-white py-16">
-    <div class="container mx-auto px-4 text-center">
-        <h1 class="text-4xl md:text-5xl font-bold mb-4">Soluções Contábeis</h1>
-        <p class="text-amarelo text-lg font-medium">Estratégia e conformidade para impulsionar o seu negócio.</p>
+<section class="page-header" style="background: var(--bordo); padding: 60px 0; color: white; text-align: center;">
+    <div class="container">
+        <h1 class="fw-bold">Soluções Contábeis</h1>
+        <p class="opacity-75">Estratégia e conformidade para impulsionar o seu negócio.</p>
     </div>
 </section>
 
-<section class="py-20 bg-white">
-    <div class="container mx-auto px-4">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {% for service in services %}
-            <div id="{{ service.id }}" class="group bg-gray-50 p-8 rounded-3xl border border-gray-100 hover:shadow-xl transition-all duration-300">
-                <div class="flex items-center mb-6">
-                    <div class="w-14 h-14 bg-bordo text-amarelo rounded-2xl flex items-center justify-center text-2xl mr-4 shadow-lg group-hover:scale-110 transition">
-                        <i class="fas 
-                            {% if service.id == 'contabilidade-fiscal' %}fa-file-invoice-dollar
-                            {% elif service.id == 'ir-pf-pj' %}fa-tasks
-                            {% elif service.id == 'planejamento-tributario' %}fa-chart-pie
-                            {% elif service.id == 'escrituracao' %}fa-piggy-bank
-                            {% else %}fa-user-check{% endif %}">
-                        </i>
-                    </div>
-                    <h3 class="text-2xl font-bold text-bordo">{{ service.title }}</h3>
-                </div>
-                <p class="text-gray-700 leading-relaxed mb-6">
-                    {{ service.body }}
-                </p>
-                <div class="flex items-center text-amarelo_dark font-bold text-sm">
-                    <i class="fas fa-check mr-2"></i> Atendimento Especializado
-                </div>
+<div class="container">
+    {% for service in services %}
+    <section class="service-section" id="{{ service.id }}">
+        <div class="row align-items-center {% if loop.index is even %}flex-row-reverse{% endif %}">
+            <div class="col-lg-6">
+                <img src="{{ url_for('static', filename='img/' + service.image) }}" alt="{{ service.title }}" class="service-img mb-4 mb-lg-0">
             </div>
-            {% endfor %}
+            <div class="col-lg-6 {% if loop.index is even %}pe-lg-5{% else %}ps-lg-5{% endif %}">
+                <span class="badge-service">Hoffmann Consultoria</span>
+                <h2 class="fw-bold mb-3" style="color: var(--bordo);">{{ service.title }}</h2>
+                <p class="fs-5">{{ service.body }}</p>
+                <p>Oferecemos suporte especializado para garantir que sua empresa opere com a máxima eficiência tributária e total segurança perante os órgãos fiscalizadores.</p>
+                <a href="https://wa.me/5547984474038" class="btn btn-dark btn-lg mt-3" style="background-color: var(--bordo); border: none;">Solicitar Proposta</a>
+            </div>
         </div>
-    </div>
-</section>
-
-<section class="py-16 bg-bordo text-white overflow-hidden relative">
-    <div class="container mx-auto px-4 relative z-10 text-center">
-        <h2 class="text-3xl font-bold mb-6">Não encontrou o que precisava?</h2>
-        <p class="text-gray-300 mb-10 max-w-2xl mx-auto text-lg">
-            Cada empresa é única. Fale diretamente com nossos especialistas para uma solução personalizada e estratégica para o seu modelo de negócio.
-        </p>
-        <div class="flex justify-center">
-            <a href="https://wa.me/5547984474038" class="bg-amarelo text-bordo px-10 py-4 rounded-full font-extrabold text-lg hover:bg-white transition flex items-center shadow-2xl">
-                <i class="fab fa-whatsapp mr-3 text-2xl"></i> FALAR COM ESPECIALISTA
-            </a>
-        </div>
-    </div>
-    <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2 w-[800px] h-[300px] bg-amarelo opacity-5 rounded-full blur-3xl"></div>
-</section>
+    </section>
+    {% endfor %}
+</div>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
+    window.onload = function() {
         const urlParams = new URLSearchParams(window.location.search);
         const anchor = urlParams.get('anchor');
         if (anchor) {
             const element = document.getElementById(anchor);
-            if (element) {
-                element.scrollIntoView({ behavior: 'smooth' });
-                element.classList.add('ring-2', 'ring-amarelo'); // Destaque temporário
-            }
+            if (element) element.scrollIntoView({ behavior: 'smooth' });
         }
-    });
+    }
 </script>
 {% endblock %}
