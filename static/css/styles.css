@@ -523,18 +523,19 @@ header.site-header {
 }
 /* --- ELEMENTO VISUAL COM FOTO E BLOBS (ESTRUTURA BASE) --- */
 
-/* --- CORREÇÃO DA FOTO DO PABLO (CABEÇA E POSIÇÃO) --- */
+/* --- CORREÇÃO DA FOTO DO PABLO (CABEÇA SAINDO DO CÍRCULO) --- */
 .hero-visual {
-  flex: 1;
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 400px;
-  height: 60vh;
-  max-height: 600px;
-  width: 100%;
-  overflow: visible !important; /* Permite que a cabeça saia do container pai */
+    flex: 1;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 400px;
+    height: 60vh;
+    max-height: 600px;
+    width: 100%;
+    /* Removido o overflow: hidden daqui para a cabeça poder sair */
+    overflow: visible !important;
 }
 
 .hero-visual-inner {
@@ -548,15 +549,16 @@ header.site-header {
 }
 
 .blob-frame {
-  position: absolute;
-  bottom: 0;
-  z-index: 5;
-  width: 100%;
-  height: 100%;
-  background-color: var(--terracota);
-  border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
-  animation: morph 8s ease-in-out infinite;
-  overflow: hidden;
+    position: absolute;
+    bottom: 0;
+    z-index: 5;
+    width: 100%;
+    height: 100%;
+    background-color: var(--terracota);
+    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+    animation: morph 8s ease-in-out infinite;
+    /* Oculta apenas o que sai pelas laterais e base do círculo */
+    overflow: hidden;
 }
 
 .image-cutter {
@@ -567,17 +569,20 @@ header.site-header {
     display: flex;
     align-items: flex-end;
     justify-content: center;
-    overflow: visible !important; /* ESSENCIAL: não corta o que sai do círculo */
+    /* MUITO IMPORTANTE: permite que o topo da imagem suba além do círculo */
+    overflow: visible !important;
 }
 .hero-person-img {
     width: auto;
-    height: 125% !important; /* Aumentado para 125% para a cabeça "subir" bastante */
+    /* Aumentado para 120% para a cabeça "pular" para fora do círculo */
+    height: 120% !important;
     max-width: 150%;
     object-fit: contain;
     z-index: 11;
     transform-origin: bottom center;
+    /* Ajuste para alinhar na base e crescer para cima */
+    margin-bottom: 0;
     position: relative;
-    bottom: -5px; /* Ajuste fino na base */
 }
 /* Blobs de fundo - Usando VW para escalar com o navegador */
 .blob {
