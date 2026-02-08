@@ -327,3 +327,197 @@ img {
 .text-center {
     text-align: center;
 }
+
+/* --- HERO HOME --- */
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* 1 coluna no celular */
+    gap: 40px;
+    align-items: center;
+}
+
+@media (min-width: 992px) {
+    .hero-grid {
+        grid-template-columns: 1.2fr 0.8fr; /* Desktop: Texto maior que a imagem */
+        text-align: left;
+    }
+}
+
+.hero-text h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    line-height: 1.1;
+    margin-bottom: 20px;
+    color: var(--terroso);
+}
+
+.hero-actions {
+    display: flex;
+    flex-direction: column; /* Botões empilhados no celular */
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+@media (min-width: 576px) {
+    .hero-actions {
+        flex-direction: row; /* Lado a lado em telas médias/grandes */
+    }
+}
+
+/* --- VISUAL HERO (BLOBS E FOTO) --- */
+.visual-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    height: 350px;
+}
+
+@media (min-width: 992px) {
+    .visual-container {
+        height: 500px;
+    }
+}
+
+.blob-bg {
+    position: absolute;
+    width: 280px;
+    height: 280px;
+    background: var(--terracota);
+    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+    opacity: 0.2;
+    z-index: 1;
+}
+
+.hero-img {
+    height: 100%;
+    width: auto;
+    z-index: 2;
+    filter: drop-shadow(0 20px 30px rgba(0,0,0,0.1));
+}
+
+/* --- GRID DE SERVIÇOS (MINI CARDS) --- */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.service-mini-card {
+    background: white;
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    text-align: center;
+}
+
+.mini-card-img {
+    width: 100%;
+    height: 180px;
+    overflow: hidden;
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
+
+.mini-card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* --- LISTA DE DIFERENCIAIS --- */
+.dif-list {
+    list-style: none;
+    margin-top: 20px;
+}
+
+.dif-list li {
+    background: #fff;
+    margin-bottom: 12px;
+    padding: 15px 20px;
+    border-left: 5px solid var(--bordo);
+    border-radius: 8px;
+    font-weight: 600;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+}
+
+/* --- LAYOUT DE CONTATO --- */
+.info-group {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.info-item-new {
+    display: flex;
+    gap: 15px;
+    align-items: flex-start;
+}
+
+.info-item-new i {
+    color: var(--bordo);
+    font-size: 1.2rem;
+    margin-top: 5px;
+}
+
+.info-item-new h3 {
+    font-size: 1rem;
+    color: var(--terroso);
+    margin-bottom: 5px;
+}
+
+/* --- CARD DO FORMULÁRIO --- */
+.contact-form-card {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    border-top: 6px solid var(--dourado);
+}
+
+.form-control {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.form-control label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+}
+
+.form-control input, 
+.form-control textarea, 
+.form-control select {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+.form-control input:focus {
+    border-color: var(--terracota);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(154, 80, 73, 0.1);
+}
+
+/* --- RESPONSIVIDADE DO FORMULÁRIO --- */
+.form-row-group {
+    display: flex;
+    flex-direction: column; /* Coluna no celular */
+    gap: 0;
+}
+
+@media (min-width: 768px) {
+    .form-row-group {
+        flex-direction: row; /* Lado a lado no tablet/desktop */
+        gap: 20px;
+    }
+}
+
+.w-100 { width: 100%; }
