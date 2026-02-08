@@ -49,9 +49,10 @@ img {
   position: sticky;
   top: 0;
   z-index: 1000;
-  height: 70px;
+  height: 80px; /* Aumentado para acomodar logo e botões */
   display: flex;
   align-items: center;
+  border-bottom: 2px solid var(--dourado);
 }
 
 .header-inner {
@@ -61,34 +62,62 @@ img {
   width: 100%;
 }
 
+/* Menu Desktop */
+@media (min-width: 992px) {
+  .main-nav ul {
+    display: flex;
+    list-style: none;
+    gap: 25px;
+  }
+  .main-nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: var(--transition);
+  }
+  .main-nav a:hover, .main-nav a.active { color: var(--dourado); }
+  
+  .nav-toggle { display: none; }
+}
+
+/* Menu Mobile */
 @media (max-width: 991px) {
   .main-nav {
     position: fixed;
     top: 0;
     right: -100%;
-    width: 80%;
+    width: 280px;
     height: 100vh;
     background: var(--terroso);
     padding: 80px 20px;
     transition: var(--transition);
+    box-shadow: -5px 0 15px rgba(0,0,0,0.3);
   }
   .main-nav.open { right: 0; }
-  .main-nav ul { flex-direction: column; gap: 20px; }
+  .main-nav ul { flex-direction: column; list-style: none; gap: 20px; }
+  .main-nav a { color: white; font-size: 1.2rem; text-decoration: none; }
+  
+  .btn-whatsapp-header span { display: none; } /* Deixa apenas ícone no mobile */
 }
 
-@media (min-width: 992px) {
-  .main-nav ul { display: flex; list-style: none; gap: 30px; }
-  .main-nav a {
-    color: white;
-    text-decoration: none;
-    font-weight: 500;
-    transition: var(--transition);
-  }
-  .main-nav a:hover { color: var(--dourado); }
+.btn-whatsapp-header {
+  background: #25d366;
+  color: white;
+  padding: 10px 18px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: var(--transition);
 }
+
+.btn-whatsapp-header:hover { background: #128c7e; transform: translateY(-2px); }
 
 /* =========================================================
-   3. HERO SECTION (HOME) - CORREÇÃO DA FOTO
+   3. HERO SECTION (HOME)
 ========================================================= */
 .hero-modern {
   padding: 40px 0;
@@ -105,64 +134,7 @@ img {
 }
 
 @media (min-width: 992px) {
-    .hero-grid {
-        grid-template-columns: 1.2fr 0.8fr;
-        text-align: left;
-    }
-}
-
-.hero-text h1 {
-    font-size: clamp(2rem, 5vw, 3.5rem);
-    line-height: 1.1;
-    margin-bottom: 20px;
-    color: var(--terroso);
-}
-
-.hero-actions {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    margin-bottom: 20px;
-}
-
-@media (min-width: 576px) {
-    .hero-actions { flex-direction: row; }
-}
-
-/* Fix para a foto ancorada na base */
-.visual-container {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    height: 100%;
-    min-height: 400px;
-}
-
-@media (min-width: 992px) { .visual-container { height: 500px; } }
-
-.blob-bg {
-    position: absolute;
-    width: 280px;
-    height: 280px;
-    background: var(--terracota);
-    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
-    opacity: 0.2;
-    z-index: 1;
-}
-
-.photo-anchor {
-    position: relative;
-    z-index: 2;
-    mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
-    -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
-}
-
-.hero-img {
-    max-height: 500px;
-    width: auto;
-    display: block;
-    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.15));
+    .hero-grid { grid-template-columns: 1.2fr 0.8fr; text-align: left; }
 }
 
 .top-tag {
@@ -176,20 +148,68 @@ img {
     border-bottom: 2px solid var(--dourado);
 }
 
-.hero-badge {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 0.9rem;
-    font-weight: 600;
+.hero-text h1 {
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    line-height: 1.1;
+    margin-bottom: 20px;
     color: var(--terroso);
 }
 
+.hero-text h1 strong { color: var(--bordo); }
+
+.hero-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+@media (min-width: 576px) { .hero-actions { flex-direction: row; } }
+
+/* CORREÇÃO DA FOTO: Máscara e Base */
+.visual-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    height: 100%;
+    min-height: 400px;
+}
+
+@media (min-width: 992px) { .visual-container { height: 520px; } }
+
+.blob-bg {
+    position: absolute;
+    bottom: 20px;
+    width: 300px;
+    height: 300px;
+    background: var(--terracota);
+    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+    opacity: 0.2;
+    z-index: 1;
+}
+
+.photo-anchor {
+    position: relative;
+    z-index: 2;
+    /* ESSA REGRA É O QUE FAZ A FOTO NÃO FICAR CORTADA SECA NA BASE */
+    mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+}
+
+.hero-img {
+    height: 100%;
+    max-height: 500px;
+    width: auto;
+    display: block;
+    filter: drop-shadow(0 15px 30px rgba(0,0,0,0.2));
+}
+
 /* =========================================================
-   4. COMPONENTES GLOBAIS (BOTÕES E CARDS)
+   4. COMPONENTES E PÁGINAS (SOBRE, SERVIÇOS, CONTATO)
 ========================================================= */
 .btn {
-  padding: 12px 24px;
+  padding: 14px 28px;
   border-radius: 50px;
   text-decoration: none;
   font-weight: 700;
@@ -198,102 +218,11 @@ img {
   transition: var(--transition);
 }
 
-@media (max-width: 767px) { .btn { width: 100%; } }
+.cta-primary { background: var(--bordo); color: white; border: none; }
+.cta-secondary { border: 2px solid var(--bordo); color: var(--bordo); background: transparent; }
+.cta-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(120, 21, 12, 0.2); }
 
-.cta-primary { background: var(--bordo); color: white; }
-.cta-secondary { border: 2px solid var(--bordo); color: var(--bordo); }
-.cta-primary:hover { opacity: 0.9; transform: translateY(-2px); }
-
-.btn-link {
-    color: var(--bordo);
-    font-weight: 700;
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    transition: var(--transition);
-}
-.btn-link:hover { gap: 12px; color: var(--terracota); }
-
-/* =========================================================
-   5. PÁGINA SOBRE
-========================================================= */
-.page-header {
-    background-color: var(--terroso);
-    color: white;
-    padding: 80px 0 60px;
-    text-align: center;
-}
-
-.quote-box {
-    margin: 30px 0;
-    padding-left: 20px;
-    border-left: 4px solid var(--dourado);
-}
-
-.quote-box .highlight {
-    font-weight: 700;
-    color: var(--bordo);
-    text-transform: uppercase;
-}
-
-.photo-card-premium {
-    position: relative;
-    max-width: 350px;
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-}
-
-.photo-card-premium img { transition: transform 0.5s ease; }
-.photo-card-premium:hover img { transform: scale(1.05); }
-
-.card-label {
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: var(--bordo);
-    color: white;
-    padding: 10px 20px;
-    border-radius: 50px;
-    white-space: nowrap;
-    font-weight: 600;
-    border: 1px solid var(--dourado);
-}
-
-/* =========================================================
-   6. PÁGINA SERVIÇOS
-========================================================= */
-.service-card {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-    margin-bottom: 80px;
-    align-items: center;
-    text-align: center;
-}
-
-@media (min-width: 992px) {
-    .service-card { flex-direction: row; text-align: left; gap: 80px; }
-    .service-card.reverse { flex-direction: row-reverse; }
-}
-
-.image-box {
-    overflow: hidden;
-    border-radius: 20px;
-    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-}
-
-.image-box img {
-    width: 100%;
-    height: 300px;
-    object-fit: cover;
-}
-
-@media (min-width: 992px) { .image-box img { height: 400px; } }
-
-/* Grid de mini cards (Home) */
+/* Cards de Serviços Home */
 .services-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -303,73 +232,67 @@ img {
 
 .service-mini-card {
     background: white;
-    padding: 25px;
+    padding: 30px;
     border-radius: 20px;
     box-shadow: 0 10px 20px rgba(0,0,0,0.05);
     text-align: center;
     border-bottom: 4px solid transparent;
     transition: var(--transition);
 }
+
 .service-mini-card:hover { border-bottom-color: var(--dourado); transform: translateY(-5px); }
 
-/* =========================================================
-   7. DIFERENCIAIS
-========================================================= */
-.dif-list { list-style: none; margin-top: 20px; }
+.mini-card-img {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
 
+.mini-card-img img { width: 100%; height: 100%; object-fit: cover; }
+
+/* Diferenciais */
+.dif-list { list-style: none; margin-top: 25px; }
 .dif-list li {
     display: flex;
     align-items: center;
     gap: 15px;
     background: #fff;
-    padding: 18px;
+    padding: 20px;
     border-radius: 12px;
     margin-bottom: 15px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.03);
-    border-left: 4px solid var(--dourado);
+    border-left: 5px solid var(--dourado);
     font-weight: 600;
 }
-
 .dif-list li i { color: var(--bordo); font-size: 1.2rem; }
 
-/* =========================================================
-   8. PÁGINA CONTATO
-========================================================= */
-.info-group { display: flex; flex-direction: column; gap: 25px; margin-top: 30px; }
-
-.info-item-new { display: flex; gap: 15px; align-items: flex-start; }
-.info-item-new i { color: var(--bordo); font-size: 1.2rem; }
-.info-item-new h3 { font-size: 1rem; color: var(--terroso); margin-bottom: 5px; }
-
+/* Formulário Contato */
 .contact-form-card {
     background: white;
-    padding: 30px;
+    padding: 40px;
     border-radius: 20px;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.08);
     border-top: 6px solid var(--dourado);
 }
 
-.form-control { margin-bottom: 20px; text-align: left; }
+.form-control { margin-bottom: 20px; }
 .form-control label { display: block; font-weight: 600; margin-bottom: 8px; font-size: 0.9rem; }
-
 .form-control input, .form-control textarea, .form-control select {
     width: 100%;
-    padding: 12px 15px;
+    padding: 14px;
     border: 1px solid #ddd;
-    border-radius: 8px;
-    font-family: inherit;
+    border-radius: 10px;
     font-size: 1rem;
     transition: var(--transition);
 }
+.form-control input:focus { border-color: var(--terracota); outline: none; box-shadow: 0 0 0 4px rgba(154, 80, 73, 0.1); }
 
-.form-control input:focus {
-    border-color: var(--terracota);
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(154, 80, 73, 0.1);
-}
+@media (min-width: 768px) { .form-row-group { display: flex; gap: 20px; } }
 
-.form-row-group { display: flex; flex-direction: column; }
-
-@media (min-width: 768px) {
-    .form-row-group { flex-direction: row; gap: 20px; }
-}
+/* Footer */
+.site-footer { background: var(--terroso); color: white; padding: 60px 0 30px; }
+.footer-columns { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; }
+.footer-about img { margin-bottom: 20px; }
+.footer-bottom { text-align: center; border-top: 1px solid rgba(255,255,255,0.1); margin-top: 40px; padding-top: 20px; font-size: 0.85rem; }
