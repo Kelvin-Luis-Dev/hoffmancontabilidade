@@ -1,144 +1,65 @@
 {% extends "base.html" %}
 {% block title %}Home - Hoffmann Contabilidade{% endblock %}
+
 {% block content %}
+<div class="home-page">
+    <section class="hero-modern section-padding">
+        <div class="container hero-grid">
+            <div class="hero-text reveal">
+                <h1>Estratégias para negócios <br><strong>de sucesso.</strong></h1>
+                <p>Assessoria contábil completa para empresas de todos os portes. Cuidamos da burocracia para que você foque no crescimento!</p>
+                
+                <div class="hero-actions">
+                    <a href="{{ url_for('contato_get') }}" class="btn cta-primary">Abra sua empresa</a>
+                    <a href="{{ url_for('servicos') }}" class="btn cta-secondary">Ver Orçamento</a>
+                </div>
 
-<style>
-  .reveal { opacity: 0; transform: translateY(50px); transition: all 1s cubic-bezier(0.2, 0.8, 0.2, 1); will-change: opacity, transform; }
-  .reveal.active { opacity: 1; transform: translateY(0); }
-  .d-100 { transition-delay: 0.1s; }
-  .d-200 { transition-delay: 0.2s; }
-  .d-300 { transition-delay: 0.3s; }
-  .d-400 { transition-delay: 0.4s; }
-  .d-500 { transition-delay: 0.5s; }
-
-  @media (max-width: 992px) {
-    .hero-modern-inner { flex-direction: column-reverse; text-align: center; padding: 40px 20px; }
-    .hero-content { width: 100%; margin-top: 30px; }
-
-    /* Botões lado a lado no celular */
-    .hero-buttons {
-      display: flex !important;
-      flex-direction: row !important;
-      gap: 10px;
-      justify-content: center;
-    }
-    .hero-buttons .btn {
-      flex: 1;
-      font-size: 0.85rem;
-      padding: 0.8rem 0.5rem;
-      white-space: nowrap;
-    }
-
-    .hero-visual { width: 100%; display: flex; justify-content: center; margin-bottom: 20px; }
-
-    .home-service-image-wrapper {
-      transform: skewX(-10deg) !important;
-      max-width: 300px;
-      margin: 0 auto;
-    }
-    .home-service-item { flex-direction: column !important; }
-  }
-  .wrap { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 20px; box-sizing: border-box; }
-</style>
-
-<section class="hero-modern">
-  <div class="wrap hero-modern-inner">
-    <div class="hero-content">
-      <h1 class="reveal">Estratégias para negócios <br><strong>de sucesso.</strong></h1>
-      <p class="reveal d-200">Assessoria contábil completa para empresas de todos os portes. Cuidamos da burocracia para que você foque no crescimento e sucesso do seu negócio!</p>
-      <div class="hero-buttons reveal d-300">
-        <a class="btn cta-primary" href="{{ url_for('contato_get') }}">Abra sua empresa</a>
-        <a class="btn cta-secondary" href="/servicos">Fazer Orçamento</a>
-      </div>
-      <div class="hero-tag reveal d-400">
-        <i class="fas fa-check-circle"></i> Atendimento 100% Digital
-      </div>
-    </div>
-
-    <div class="hero-visual reveal d-300">
-        <div class="blob blob-1"></div>
-        <div class="blob blob-2"></div>
-        <div class="hero-visual-inner">
-          <div class="blob-frame">
-            <div class="image-cutter">
-                <img src="{{ url_for('static', filename='img/pablohome.png') }}" alt="Pablo Hoffman" class="hero-person-img">
+                <div class="hero-badge">
+                    <i class="fas fa-check-circle"></i> Atendimento 100% Digital
+                </div>
             </div>
-          </div>
-        </div>
-    </div>
-  </div>
-</section>
 
-<section class="home-services">
-  <div class="wrap">
-      <h2 class="home-services-title reveal">Nossos principais serviços</h2>
-      <div class="home-services-container">
-        {% for s in services[:3] %}
-        <div class="home-service-item reveal {% if loop.index is even %}reverse{% endif %}">
-          <div class="home-service-image-wrapper">
-            <img src="{{ url_for('static', filename='img/' + s.image) }}" alt="{{ s.title }}" class="home-service-image">
-          </div>
-          <div class="home-service-text reveal d-200">
-            <h3>{{ s.title }}</h3>
-            <p>{{ s.excerpt }}</p>
-            <a href="/servicos?anchor={{ s.id }}" class="home-service-link">Saiba mais <span class="arrow"></span></a>
-          </div>
+            <div class="hero-visual reveal">
+                <div class="visual-container">
+                    <div class="blob-bg"></div>
+                    <img src="{{ url_for('static', filename='img/pablohome.png') }}" alt="Pablo Hoffmann" class="hero-img">
+                </div>
+            </div>
         </div>
-        {% endfor %}
-      </div>
-  </div>
-</section>
+    </section>
 
-<section class="faq-section">
-  <div class="faq-overlay"></div>
-  <div class="wrap faq-content">
-    <h2 class="faq-title reveal">Perguntas Frequentes</h2>
-    <div class="faq-grid">
-      <details class="faq-item reveal d-100">
-        <summary>Quanto custa para abrir uma empresa?</summary>
-        <p>O custo varia de acordo com o estado e o tipo de empresa. No entanto, aqui na Hoffmann, oferecemos condições especiais e cuidamos de toda a burocracia para você não ter surpresas.</p>
-      </details>
-      <details class="faq-item reveal d-200">
-        <summary>Preciso de um contador para abrir minha empresa?</summary>
-        <p>Sim, é necessário ter um contador para realizar a abertura da empresa. Além da obrigatoriedade, ter um especialista garante que você pagará o menor imposto possível dentro da lei.</p>
-      </details>
-      <details class="faq-item reveal d-300">
-        <summary>O que é um Contrato Social?</summary>
-        <p>É a certidão de nascimento da empresa. Nele constam as regras, quem são os sócios, o capital investido e as atividades que a empresa vai exercer.</p>
-      </details>
-      <details class="faq-item reveal d-400">
-        <summary>Como funciona o atendimento 100% digital?</summary>
-        <p>Você é atendido via WhatsApp, E-mail ou Reunião Online com agilidade. Seus documentos ficam na nuvem e você não precisa vir ao escritório físico para resolver o dia a dia.</p>
-      </details>
-    </div>
-  </div>
-</section>
-
-<section class="diferenciais-section">
-    <div class="wrap dif-container">
-        <div class="dif-img-wrapper reveal">
-            <div class="dif-img-border"></div>
-            <img src="static/img/escolherahoffmann.png" alt="Diferenciais Hoffmann">
+    <section class="home-services section-padding">
+        <div class="container">
+            <h2 class="section-title text-center">Nossos Principais Serviços</h2>
+            <div class="services-grid">
+                {% for s in services[:3] %}
+                <div class="service-mini-card reveal">
+                    <div class="mini-card-img">
+                        <img src="{{ url_for('static', filename='img/' + s.image) }}" alt="{{ s.title }}">
+                    </div>
+                    <h3>{{ s.title }}</h3>
+                    <p>{{ s.excerpt }}</p>
+                    <a href="{{ url_for('servicos') }}?anchor={{ s.id }}" class="btn-link">Saiba mais</a>
+                </div>
+                {% endfor %}
+            </div>
         </div>
-        <div class="dif-text reveal d-200">
-            <h2>Nossos Diferenciais</h2>
-            <p>Entender a necessidade do nosso cliente é a nossa prioridade! Nosso diferencial está baseado em três pilares essenciais:</p>
-            <ul class="lista-diferenciais">
-                <li>Atendimento personalizado</li>
-                <li>Compromisso com a conformidade</li>
-                <li>Suporte estratégico</li>
-            </ul>
-        </div>
-    </div>
-</section>
+    </section>
 
-<script>
-  document.addEventListener("DOMContentLoaded", function() {
-    const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('active'); observer.unobserve(entry.target); } });
-    }, observerOptions);
-    document.querySelectorAll('.reveal').forEach((el) => { observer.observe(el); });
-  });
-</script>
+    <section class="home-dif section-padding">
+        <div class="container grid-2-cols">
+            <div class="dif-img reveal">
+                <img src="{{ url_for('static', filename='img/escolherahoffmann.png') }}" alt="Diferenciais">
+            </div>
+            <div class="dif-content reveal">
+                <h2>Nossos Diferenciais</h2>
+                <ul class="dif-list">
+                    <li>Atendimento personalizado</li>
+                    <li>Compromisso com a conformidade</li>
+                    <li>Suporte estratégico</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+</div>
 {% endblock %}
