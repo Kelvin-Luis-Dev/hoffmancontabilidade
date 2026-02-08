@@ -21,17 +21,17 @@
 </head>
 <body>
   <header class="site-header">
-    <div class="header-inner">
+    <div class="container header-inner">
       <a class="logo" href="{{ url_for('home') }}" aria-label="Página inicial">
-        <img src="{{ url_for('static', filename='img/logoenome.png') }}" alt="Hoffmann Contabilidade" height="52">
+        <img src="{{ url_for('static', filename='img/logoenome.png') }}" alt="Hoffmann Contabilidade" height="60">
       </a>
 
-      <nav id="main-nav" class="main-nav" role="navigation" aria-label="Menu principal">
+      <nav id="main-nav" class="main-nav">
         <ul>
           <li><a href="{{ url_for('home') }}" class="{% if request.endpoint == 'home' %}active{% endif %}">Home</a></li>
           <li><a href="{{ url_for('sobre') }}" class="{% if request.endpoint == 'sobre' %}active{% endif %}">Sobre</a></li>
           <li class="has-dropdown">
-            <a href="{{ url_for('servicos') }}">Serviços <i class="fas fa-chevron-down" style="font-size: 0.7em;"></i></a>
+            <a href="#">Serviços <i class="fas fa-chevron-down"></i></a>
             <ul class="dropdown">
               <li><a href="{{ url_for('servicos') }}#contabilidade-fiscal">Contabilidade/Fiscal</a></li>
               <li><a href="{{ url_for('servicos') }}#ir-pf-pj">Demandas Administrativas</a></li>
@@ -45,16 +45,15 @@
       </nav>
 
       <div class="header-actions">
-        <a href="https://wa.me/5547988187962" target="_blank" class="btn-header">
-          Fale Direto Conosco
+        <a href="https://wa.me/5547988187962" target="_blank" class="btn-whatsapp-header">
+          <i class="fab fa-whatsapp"></i> <span>Fale Conosco</span>
         </a>
-
-        <button id="nav-toggle" class="nav-toggle" aria-expanded="false" aria-controls="main-nav">
+        <button id="nav-toggle" class="nav-toggle">
           <span class="hamburger"></span>
         </button>
       </div>
     </div>
-  </header>
+</header>
 
   <main id="content">
     {% block content %}{% endblock %}
