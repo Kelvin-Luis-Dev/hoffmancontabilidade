@@ -1,147 +1,109 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>{% block title %}Hoffmann Contabilidade{% endblock %}</title>
-  <meta name="description" content="Hoffmann Contabilidade — soluções contábeis, fiscais e consultoria personalizada.">
-  <meta property="og:title" content="Hoffmann Contabilidade">
-  <meta property="og:description" content="Soluções contábeis confiáveis e sob medida para o seu negócio.">
-  <meta property="og:image" content="{{ url_for('static', filename='img/logo.hoffman.png') }}">
-  <meta property="og:type" content="website">
-  <link rel="icon" href="{{ url_for('static', filename='img/logo.hoffman.png') }}" type="image/png">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Hoffmann Contabilidade{% endblock %}</title>
+    
+    <meta name="description" content="Hoffmann Contabilidade — soluções contábeis, fiscais e consultoria personalizada.">
+    <meta property="og:title" content="Hoffmann Contabilidade">
+    <meta property="og:description" content="Soluções contábeis confiáveis e sob medida para o seu negócio.">
+    <meta property="og:image" content="{{ url_for('static', filename='img/logo.hoffman.png') }}">
+    <meta property="og:type" content="website">
+    
+    <link rel="icon" href="{{ url_for('static', filename='img/logo.hoffman.png') }}" type="image/png">
 
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-  <script defer src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 
-  {% block head %}{% endblock %}
+    {% block head %}{% endblock %}
 </head>
 <body>
-  <header class="site-header">
-    <div class="container header-inner">
-      <a class="logo" href="{{ url_for('home') }}" aria-label="Página inicial">
-        <img src="{{ url_for('static', filename='img/logoenome.png') }}" alt="Hoffmann Contabilidade" height="60">
-      </a>
 
-      <nav id="main-nav" class="main-nav">
-        <ul>
-          <li><a href="{{ url_for('home') }}" class="{% if request.endpoint == 'home' %}active{% endif %}">Home</a></li>
-          <li><a href="{{ url_for('sobre') }}" class="{% if request.endpoint == 'sobre' %}active{% endif %}">Sobre</a></li>
-          <li class="has-dropdown">
-            <a href="#">Serviços <i class="fas fa-chevron-down"></i></a>
-            <ul class="dropdown">
-              <li><a href="{{ url_for('servicos') }}#contabilidade-fiscal">Contabilidade/Fiscal</a></li>
-              <li><a href="{{ url_for('servicos') }}#ir-pf-pj">Demandas Administrativas</a></li>
-              <li><a href="{{ url_for('servicos') }}#planejamento-tributario">Planejamento Tributário</a></li>
-              <li><a href="{{ url_for('servicos') }}#escrituracao">Redução de Custos</a></li>
-              <li><a href="{{ url_for('servicos') }}#gestao-folha">Imposto de Renda</a></li>
-            </ul>
-          </li>
-          <li><a href="{{ url_for('contato_get') }}" class="{% if request.endpoint == 'contato_get' %}active{% endif %}">Contato</a></li>
-        </ul>
-      </nav>
-
-      <div class="header-actions">
-        <a href="https://wa.me/5547988187962" target="_blank" class="btn-whatsapp-header">
-          <i class="fab fa-whatsapp"></i> <span>Fale Conosco</span>
-        </a>
-        <button id="nav-toggle" class="nav-toggle">
-          <span class="hamburger"></span>
-        </button>
-      </div>
-    </div>
-</header>
-
-  <main id="content">
-    {% block content %}{% endblock %}
-  </main>
-
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <div class="footer-columns">
-        <div class="footer-about">
-          <img src="{{ url_for('static', filename='img/logo.hoffman.png') }}" alt="Hoffmann Contabilidade" height="45">
-          <p>Contabilidade e consultoria 100% digital, oferecendo soluções modernas, seguras e estratégicas para a gestão empresarial.</p>
-          <p class="responsavel"><strong>Contador Responsável:</strong> Pablo Hoffmann — CRC SC-048569/O</p>
-        </div>
-
-        <div class="footer-links">
-          <h4>Institucional</h4>
-          <ul>
-            <li><a href="{{ url_for('sobre') }}">Quem somos</a></li>
-            <li><a href="{{ url_for('servicos') }}">Serviços</a></li>
-            <li><a href="{{ url_for('contato_get') }}">Contato</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-contact">
-          <h4>Atendimento</h4>
-          <p><strong>Pablo:</strong> <a href="tel:+5547984474038">(47) 9 8447-4038</a></p>
-          <p><strong>Natália:</strong> <a href="tel:+5547988187962">(47) 9 8818-7962</a></p>
-          <p><a href="mailto:hoffmannconsultoriacontabil@gmail.com">hoffmannconsultoriacontabil@gmail.com</a></p>
-          <p>Atendimento 100% digital</p>
-        </div>
-
-        <div class="footer-social">
-          <h4>Redes sociais</h4>
-          <div class="social-icons">
-            <a href="https://www.linkedin.com/company/hoffmann-contabilidade/" target="_blank" aria-label="LinkedIn" style="color: white; margin-right: 15px; font-size: 24px;">
-              <i class="fab fa-linkedin"></i>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="logo" href="{{ url_for('home') }}">
+                <img src="{{ url_for('static', filename='img/logoenome.png') }}" alt="Hoffmann Contabilidade">
             </a>
-            <a href="https://www.instagram.com/contabilidadehoffmann" target="_blank" aria-label="Instagram" style="color: white; margin-right: 15px; font-size: 24px;">
-              <i class="fab fa-instagram"></i>
-            </a>
-          </div>
-          <div style="margin-top: 20px;">
-              <p><strong>Horário:</strong><br>08h–12h | 13h–18h</p>
-          </div>
+
+            <nav id="main-nav" class="main-nav">
+                <ul class="nav-list">
+                    <li><a href="{{ url_for('home') }}" class="{{ 'active' if request.endpoint == 'home' }}">Home</a></li>
+                    <li><a href="{{ url_for('sobre') }}" class="{{ 'active' if request.endpoint == 'sobre' }}">Sobre</a></li>
+                    <li class="has-dropdown">
+                        <a href="#" class="dropdown-toggle">Serviços <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{ url_for('servicos') }}#contabilidade-fiscal">Contabilidade/Fiscal</a></li>
+                            <li><a href="{{ url_for('servicos') }}#ir-pf-pj">Demandas Administrativas</a></li>
+                            <li><a href="{{ url_for('servicos') }}#planejamento-tributario">Planejamento Tributário</a></li>
+                            <li><a href="{{ url_for('servicos') }}#escrituracao">Redução de Custos</a></li>
+                            <li><a href="{{ url_for('servicos') }}#gestao-folha">Imposto de Renda</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="{{ url_for('contato_get') }}" class="{{ 'active' if request.endpoint == 'contato_get' }}">Contato</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-actions">
+                <a href="https://wa.me/5547988187962" target="_blank" class="btn-cta-whatsapp">
+                    <i class="fab fa-whatsapp"></i> <span>Fale Conosco</span>
+                </a>
+                <button id="nav-toggle" class="nav-toggle" aria-label="Abrir Menu">
+                    <span class="hamburger"></span>
+                </button>
+            </div>
         </div>
-      </div>
+    </header>
 
-      <div class="footer-bottom">
-        <p>© {{ (config.get('YEAR') or '2025') }} Hoffmann Contabilidade — Todos os direitos reservados.</p>
-      </div>
-    </div>
-  </footer>
+    <main id="content" class="fade-in">
+        {% block content %}{% endblock %}
+    </main>
 
-  <script src="https://kit.fontawesome.com/a2d2d1b5cb.js" crossorigin="anonymous"></script>
-  {% block scripts %}{% endblock %}
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <img src="{{ url_for('static', filename='img/logo.hoffman.png') }}" alt="Hoffmann" class="footer-logo">
+                <p>Contabilidade e consultoria 100% digital, focada em resultados e segurança jurídica.</p>
+                <div class="social-links">
+                    <a href="https://linkedin.com/..." target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://instagram.com/..." target="_blank"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
 
-  <a href="https://wa.me/5547988187962"
-   class="whatsapp-float"
-   target="_blank"
-   aria-label="Fale conosco no WhatsApp">
-    <i class="fab fa-whatsapp"></i>
-</a>
+            <div class="footer-nav">
+                <h4>Institucional</h4>
+                <ul>
+                    <li><a href="{{ url_for('sobre') }}">Quem somos</a></li>
+                    <li><a href="{{ url_for('servicos') }}">Serviços</a></li>
+                    <li><a href="{{ url_for('contato_get') }}">Contato</a></li>
+                </ul>
+            </div>
 
-  <style>
-      .whatsapp-float {
-          position: fixed;
-          bottom: 20px;
-          right: 20px;
-          width: 60px;
-          height: 60px;
-          background-color: #25d366;
-          color: white;
-          border-radius: 50%;
-          text-align: center;
-          font-size: 35px;
-          box-shadow: 2px 2px 3px #999;
-          z-index: 1000;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          text-decoration: none;
-          transition: transform 0.3s;
-      }
-      .whatsapp-float:hover {
-          background-color: #128c7e;
-          transform: scale(1.1);
-          color: white;
-      }
-  </style>
+            <div class="footer-contact">
+                <h4>Atendimento</h4>
+                <a href="tel:+5547984474038"><i class="fas fa-phone"></i> (47) 9 8447-4038 (Pablo)</a>
+                <a href="tel:+5547988187962"><i class="fas fa-phone"></i> (47) 9 8818-7962 (Natália)</a>
+                <a href="mailto:contato@hoffmanncontabilidade.com.br"><i class="fas fa-envelope"></i> E-mail comercial</a>
+                <p><i class="fas fa-clock"></i> 08h–12h | 13h–18h</p>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="container">
+                <p>© {{ (config.get('YEAR') or '2026') }} Hoffmann Contabilidade | Pablo Hoffmann — CRC SC-048569/O</p>
+            </div>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/5547988187962" class="whatsapp-float" target="_blank" rel="noopener">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    {% block scripts %}{% endblock %}
 </body>
 </html>
