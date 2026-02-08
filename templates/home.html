@@ -1,88 +1,119 @@
-{% extends "base.html" %}
-{% block title %}Home - Hoffmann Contabilidade{% endblock %}
+{% extends 'base.html' %}
 
 {% block content %}
-<div class="home-page">
-    <section class="hero-modern section-padding">
-        <div class="container hero-grid">
-            <div class="hero-text reveal">
-                <span class="top-tag">Contabilidade Estratégica & Digital</span>
-                
-                <h1>Estratégias para negócios <br><strong>de sucesso.</strong></h1>
-                <p>Assessoria contábil completa para empresas de todos os portes. Cuidamos da burocracia para que você foque no crescimento!</p>
-                
-                <div class="hero-actions">
-                    <a href="{{ url_for('contato_get') }}" class="btn cta-primary">Abra sua empresa</a>
-                    <a href="{{ url_for('servicos') }}" class="btn cta-secondary">Ver Orçamento</a>
-                </div>
 
-                <div class="hero-badge">
-                    <i class="fas fa-check-circle"></i> Atendimento 100% Digital
+<section class="relative bg-bordo text-white overflow-hidden py-16 lg:py-32">
+    <div class="absolute top-0 right-0 -mt-20 -mr-20 w-96 h-96 bg-amarelo opacity-10 rounded-full blur-3xl"></div>
+    
+    <div class="container mx-auto px-4 relative z-10">
+        <div class="max-w-3xl">
+            <span class="inline-block bg-amarelo text-bordo font-bold px-3 py-1 rounded text-sm uppercase tracking-wider mb-6">
+                Contabilidade Estratégica & Digital
+            </span>
+            <h1 class="text-4xl md:text-6xl font-bold leading-tight mb-6">
+                Estratégias para negócios de sucesso.
+            </h1>
+            <p class="text-lg md:text-xl text-gray-300 mb-10 leading-relaxed">
+                Assessoria contábil completa para empresas de todos os portes. Cuidamos da burocracia para que você foque no crescimento!
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4">
+                <a href="https://wa.me/5547984474038" class="bg-amarelo text-bordo px-8 py-4 rounded-xl font-extrabold text-center hover:bg-white transition shadow-lg">
+                    ABRA SUA EMPRESA
+                </a>
+                <a href="{{ url_for('contato_get') }}" class="border-2 border-white px-8 py-4 rounded-xl font-bold text-center hover:bg-white hover:text-bordo transition">
+                    VER ORÇAMENTO
+                </a>
+            </div>
+            <p class="mt-8 text-sm text-gray-400 flex items-center">
+                <i class="fas fa-check-circle text-amarelo mr-2"></i> Atendimento 100% Digital com Pablo Hoffmann
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="py-20 bg-white text-center">
+    <div class="container mx-auto px-4">
+        <h2 class="text-bordo text-3xl md:text-4xl font-bold mb-4">Nossos Principais Serviços</h2>
+        <div class="w-20 h-1 bg-amarelo mx-auto mb-12"></div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {% for service in services %}
+            <div class="bg-gray-50 p-8 rounded-2xl border-b-4 border-transparent hover:border-amarelo hover:shadow-2xl transition-all duration-300 group">
+                <div class="w-16 h-16 bg-bordo text-amarelo flex items-center justify-center rounded-2xl mx-auto mb-6 text-2xl group-hover:scale-110 transition">
+                    <i class="fas 
+                        {% if service.id == 'contabilidade-fiscal' %}fa-file-invoice-dollar
+                        {% elif service.id == 'ir-pf-pj' %}fa-briefcase
+                        {% elif service.id == 'planejamento-tributario' %}fa-chart-line
+                        {% else %}fa-hand-holding-usd{% endif %}">
+                    </i>
+                </div>
+                <h3 class="text-bordo font-bold text-xl mb-3">{{ service.title }}</h3>
+                <p class="text-gray-600 text-sm mb-6">{{ service.excerpt }}</p>
+                <a href="{{ url_for('servicos', anchor=service.id) }}" class="text-bordo font-bold hover:text-amarelo flex items-center justify-center">
+                    Saiba mais <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="py-20 bg-gray-50">
+    <div class="container mx-auto px-4">
+        <div class="flex flex-col lg:flex-row items-center gap-16">
+            <div class="lg:w-1/2">
+                <h2 class="text-bordo text-3xl font-bold mb-6">Nossos Diferenciais</h2>
+                <div class="space-y-6">
+                    <div class="flex items-start">
+                        <div class="text-amarelo text-2xl mr-4 mt-1"><i class="fas fa-user-tie"></i></div>
+                        <div>
+                            <h4 class="font-bold text-lg text-bordo">Atendimento Personalizado</h4>
+                            <p class="text-gray-600">Fale diretamente com quem entende do seu negócio, sem robôs.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <div class="text-amarelo text-2xl mr-4 mt-1"><i class="fas fa-shield-alt"></i></div>
+                        <div>
+                            <h4 class="font-bold text-lg text-bordo">Compromisso com a Conformidade</h4>
+                            <p class="text-gray-600">Sua empresa sempre em dia com as leis e o fisco.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <div class="text-amarelo text-2xl mr-4 mt-1"><i class="fas fa-lightbulb"></i></div>
+                        <div>
+                            <h4 class="font-bold text-lg text-bordo">Suporte Estratégico</h4>
+                            <p class="text-gray-600">Não apenas números, mas inteligência para você lucrar mais.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
-
-            <div class="hero-visual reveal">
-                <div class="visual-container">
-                    <div class="blob-bg"></div>
-                    <div class="photo-anchor">
-                        <img src="{{ url_for('static', filename='img/pablohome.png') }}" alt="Pablo Hoffmann" class="hero-img">
+            <div class="lg:w-1/2 bg-bordo p-10 rounded-3xl text-white relative shadow-2xl">
+                <h3 class="text-amarelo text-2xl font-bold mb-4 italic">"Transformamos números em inteligência de negócio."</h3>
+                <p class="text-gray-300 leading-relaxed mb-6">
+                    Atendimento 100% digital com a confiança de quem está presente em cada decisão estratégica.
+                </p>
+                <div class="flex items-center">
+                    <div class="w-12 h-12 bg-amarelo rounded-full flex items-center justify-center text-bordo font-bold mr-3">PH</div>
+                    <div>
+                        <p class="font-bold leading-none">Pablo Hoffmann</p>
+                        <p class="text-xs text-amarelo uppercase tracking-widest">Sócio-Fundador</p>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <section class="home-services section-padding">
-        <div class="container">
-            <h2 class="section-title text-center">Nossos Principais Serviços</h2>
-            <div class="services-grid">
-                {% for s in services[:3] %}
-                <div class="service-mini-card reveal">
-                    <div class="mini-card-img">
-                        <img src="{{ url_for('static', filename='img/' + s.image) }}" alt="{{ s.title }}">
-                    </div>
-                    <div class="mini-card-content">
-                        <h3>{{ s.title }}</h3>
-                        <p>{{ s.excerpt }}</p>
-                        <a href="{{ url_for('servicos') }}?anchor={{ s.id }}" class="btn-link">Saiba mais <i class="fas fa-chevron-right"></i></a>
-                    </div>
-                </div>
-                {% endfor %}
-            </div>
+<section class="py-20 bg-white">
+    <div class="container mx-auto px-4 text-center">
+        <div class="bg-gray-100 py-12 px-6 rounded-[3rem] border-2 border-dashed border-gray-300">
+            <h2 class="text-bordo text-3xl font-bold mb-4">Não encontrou o que precisava?</h2>
+            <p class="text-gray-600 mb-8 max-w-2xl mx-auto">Cada empresa é única. Fale diretamente com nossos especialistas para uma solução personalizada.</p>
+            <a href="{{ url_for('contato_get') }}" class="bg-bordo text-white px-10 py-4 rounded-xl font-bold hover:bg-bordo_light transition shadow-xl inline-block">
+                FALAR COM ESPECIALISTA
+            </a>
         </div>
-    </section>
+    </div>
+</section>
 
-    <section class="home-dif section-padding">
-        <div class="container grid-2-cols">
-            <div class="dif-img reveal">
-                <div class="image-frame-styled">
-                    <img src="{{ url_for('static', filename='img/escolherahoffmann.png') }}" alt="Diferenciais">
-                </div>
-            </div>
-            <div class="dif-content reveal">
-                <h2>Nossos Diferenciais</h2>
-                <ul class="dif-list">
-                    <li><i class="fas fa-user-check"></i> Atendimento personalizado</li>
-                    <li><i class="fas fa-shield-alt"></i> Compromisso com a conformidade</li>
-                    <li><i class="fas fa-chart-pie"></i> Suporte estratégico</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-</div>
-
-<script>
-  document.addEventListener("DOMContentLoaded", function() {
-    const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => { 
-        if (entry.isIntersecting) { 
-            entry.target.classList.add('active'); 
-            observer.unobserve(entry.target); 
-        } 
-      });
-    }, observerOptions);
-    document.querySelectorAll('.reveal').forEach((el) => { observer.observe(el); });
-  });
-</script>
 {% endblock %}
