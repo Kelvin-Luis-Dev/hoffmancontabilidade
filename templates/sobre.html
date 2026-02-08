@@ -2,46 +2,43 @@
 {% block title %}Sobre Nós - Hoffmann Contabilidade{% endblock %}
 
 {% block content %}
-
 <div class="about-page">
-   <section class="contact-hero">
-    <div class="contact-hero-content fade-in">
-        <h1>Nossa Trajetória</h1>
-        <p>Sobre a Hoffmann Contabilidade</p>
-    </div>
-</section>
+    <section class="page-header">
+        <div class="container fade-in">
+            <h1>Nossa Trajetória</h1>
+            <p>Conheça a história e os valores da Hoffmann Contabilidade</p>
+        </div>
+    </section>
 
-    <section class="about-story">
-        <div class="container grid-story">
+    <section class="about-story section-padding">
+        <div class="container grid-2-cols">
+            
             <div class="story-text reveal">
                 <p>
-                    Fundada em 2025, a <strong>Hoffmann Contabilidade</strong> nasceu com o propósito de oferecer às empresas uma forma moderna, estratégica e descomplicada de administrar seus negócios e números. Nosso compromisso é transformar a contabilidade em uma aliada da gestão, fornecendo informações precisas e soluções personalizadas que impulsionam a tomada de decisões e o crescimento sustentável das organizações. Sob a direção do contador <strong>Pablo Hoffmann</strong> e Desenvolvedora de Negócios <strong>Natália Debastiani</strong>, a <strong>Hoffmann Contabilidade</strong> combina conhecimento técnico, inovação e atendimento humanizado para atender com excelência clientes de diversos segmentos.
+                    Fundada em 2025, a <strong>Hoffmann Contabilidade</strong> nasceu com o propósito de oferecer às empresas uma forma moderna, estratégica e descomplicada de administrar seus negócios.
                 </p>
-
-                <div class="quote-line">
-                    <p class="highlight">comprometimento, ética e eficiência</p>
+                
+                <div class="quote-box">
+                    <p class="highlight">Comprometimento, ética e eficiência</p>
                 </div>
 
                 <p>
-                    Nossos valores norteiam cada processo, garantindo transparência, responsabilidade e resultados consistentes. Acreditamos que uma contabilidade eficiente vai além dos números: é um instrumento de gestão que promove segurança, conformidade e desenvolvimento contínuo.
-                </p>
-                <p>
-                    Na <strong>Hoffmann</strong>, cada cliente é tratado como parceiro. E o seu crescimento é o nosso resultado!
+                    Sob a direção do contador <strong>Pablo Hoffmann</strong> e da Desenvolvedora de Negócios <strong>Natália Debastiani</strong>, combinamos conhecimento técnico e atendimento humanizado. Acreditamos que o seu crescimento é o nosso melhor resultado!
                 </p>
             </div>
 
-           <div class="story-image reveal">
-                <div class="story-image reveal">
-                <div class="cards-container">
-            <div class="photo-card solo-card">
-                <img src="/static/img/pablo_e_natalia.jpg" alt="Pablo Hoffmann e Natália Debastiani">
-            <div class="card-name">Pablo Hoffmann & Natália Debastiani</div>
-            </div>
+            <div class="story-visual reveal">
+                <div class="cards-wrapper">
+                    <div class="photo-card-premium">
+                        <img src="{{ url_for('static', filename='img/pablo_e_natalia.jpg') }}" alt="Pablo Hoffmann e Natália Debastiani">
+                        <div class="card-label">
+                            <span>Pablo Hoffmann & Natália Debastiani</span>
+                        </div>
+                    </div>
                 </div>
-                </div>
             </div>
-</div>
 
+        </div>
     </section>
 </div>
 {% endblock %}
