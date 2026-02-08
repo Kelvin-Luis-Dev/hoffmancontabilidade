@@ -470,11 +470,13 @@ header.site-header {
   line-height: 1.6;
 }
 
-/* Botões da Hero */
+/* BOTÕES LADO A LADO NO DESKTOP */
 .hero-buttons {
-  display: flex;
-  gap: 15px;
-  margin-bottom: 2rem;
+    display: flex;
+    flex-direction: row; /* Força ficar um do lado do outro */
+    gap: 20px;
+    margin-bottom: 2rem;
+    justify-content: flex-start;
 }
 
 .btn.cta-primary {
@@ -555,28 +557,28 @@ header.site-header {
   overflow: hidden;
 }
 
-/* Container para permitir efeito 3D (cabeça fora) mas cortar a base */
+/* CORREÇÃO DA FOTO DO PABLO (Para não cortar a cabeça) */
 .image-cutter {
-  position: relative;
-  z-index: 10;
-  width: 100%;
-  height: 120%; /* Maior que o pai para a cabeça sair */
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  overflow: visible;
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    height: 100%; /* Ajustado para 100% */
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    overflow: visible !important; /* Essencial para a cabeça sair do blob */
 }
 
 .hero-person-img {
-  width: auto;
-  height: 100%; /* Escala com o container */
-  max-width: 130%; /* Permite que a foto seja um pouco maior que o blob */
-  object-fit: contain;
-  z-index: 11;
-  transform-origin: bottom center;
-  filter: drop-shadow(0 15px 25px rgba(0,0,0,0.2));
-  /* Ajuste para alinhar na base do blob */
-  margin-bottom: 0;
+    width: auto;
+    height: 115%; /* Aumentado para 115% para a cabeça "sair" por cima */
+    max-width: 140%;
+    object-fit: contain;
+    z-index: 11;
+    transform-origin: bottom center;
+    margin-bottom: 0;
+    position: relative;
+    bottom: 0; /* Ajuste se necessário para subir a foto */
 }
 
 /* Blobs de fundo - Usando VW para escalar com o navegador */
@@ -689,24 +691,23 @@ header.site-header {
   flex-direction: row-reverse;
 }
 
+/* CORREÇÃO DO PARALELOGRAMO (Removendo o fundo vermelho indesejado) */
 .home-service-image-wrapper {
-  flex: 1;
-  overflow: hidden;
-  border-radius: 40px; /* Pontas bem arredondadas */
-  transform: skewX(-10deg); /* Faz ela ficar "deitada" */
-  box-shadow: 0 15px 35px rgba(0,0,0,0.15);
-  transition: all 0.4s ease;
-  background: var(--terroso); /* Fundo caso a imagem demore a carregar */
+    flex: 1;
+    overflow: hidden;
+    border-radius: 40px;
+    transform: skewX(-10deg);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+    background: transparent !important; /* Remove o preenchimento vermelho que você citou */
 }
 
 .home-service-image {
-  width: 120%; /* Aumentamos a largura para compensar a inclinação */
-  height: 100%;
-  display: block;
-  object-fit: cover;
-  transform: skewX(10deg) scale(1.1); /* Skew inverso para a foto ficar reta */
-  margin-left: -10%; /* Ajuste para centralizar a foto após o skew */
-  transition: transform 0.4s ease;
+    width: 130%; /* Aumentado para cobrir o skew */
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    transform: skewX(10deg) scale(1.2); /* Skew reverso + escala para não sobrar bordas */
+    margin-left: -15%;
 }
 
 /* Efeito Hover */
