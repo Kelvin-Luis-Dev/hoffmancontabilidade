@@ -1,57 +1,49 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
+
+{% block extra_css %}
+<style>
+    .page-header {
+        background: linear-gradient(rgba(91, 38, 34, 0.9), rgba(91, 38, 34, 0.9)), url("{{ url_for('static', filename='img/escolherahoffmann.jpg') }}");
+        background-size: cover;
+        background-position: center;
+        padding: 80px 0;
+        color: white;
+        text-align: center;
+    }
+    .img-team-main {
+        border-radius: 20px;
+        box-shadow: 20px 20px 0px var(--amarelo);
+        max-width: 100%;
+    }
+    .values-box {
+        border-left: 4px solid var(--amarelo);
+        padding-left: 20px;
+        margin: 30px 0;
+    }
+</style>
+{% endblock %}
 
 {% block content %}
-<section class="bg-bordo text-white py-16 relative overflow-hidden">
-    <div class="absolute top-0 right-0 w-64 h-64 bg-amarelo opacity-5 rounded-full -mr-20 -mt-20"></div>
-    <div class="container mx-auto px-4 text-center">
-        <h1 class="text-4xl md:text-5xl font-bold mb-4">Nossa Trajetória</h1>
-        <p class="text-amarelo text-lg uppercase tracking-widest font-semibold">Conheça a história e os valores da Hoffmann Contabilidade</p>
+<section class="page-header">
+    <div class="container">
+        <h1 class="display-4 fw-bold">Nossa Trajetória</h1>
+        <p class="lead">Conheça a história e os valores da Hoffmann Contabilidade</p>
     </div>
 </section>
 
-<section class="py-20 bg-white">
-    <div class="container mx-auto px-4">
-        <div class="max-w-4xl mx-auto">
-            <div class="flex flex-col md:flex-row items-center gap-12">
-                <div class="md:w-1/2">
-                    <h2 class="text-3xl font-bold text-bordo mb-6">Comprometimento, ética e eficiência</h2>
-                    <p class="text-gray-700 leading-relaxed mb-6">
-                        Fundada em 2025, a <strong>Hoffmann Contabilidade</strong> nasceu com o propósito de oferecer às empresas uma forma moderna, estratégica e descomplicada de administrar seus negócios.
-                    </p>
-                    <p class="text-gray-700 leading-relaxed">
-                        Sob a direção do contador <strong>Pablo Hoffmann</strong> e da Desenvolvedora de Negócios <strong>Natália Debastiani</strong>, combinamos conhecimento técnico e atendimento humanizado. Acreditamos que o seu crescimento é o nosso melhor resultado!
-                    </p>
-                </div>
-                <div class="md:w-1/2 grid grid-cols-2 gap-4">
-                    <div class="bg-gray-100 rounded-2xl aspect-[3/4] flex items-end justify-center overflow-hidden border-b-4 border-amarelo">
-                        <span class="p-4 text-xs font-bold text-bordo text-center uppercase">Pablo Hoffmann</span>
-                    </div>
-                    <div class="bg-gray-100 rounded-2xl aspect-[3/4] flex items-end justify-center overflow-hidden border-b-4 border-amarelo">
-                        <span class="p-4 text-xs font-bold text-bordo text-center uppercase">Natália Debastiani</span>
-                    </div>
+<section class="py-5">
+    <div class="container py-5">
+        <div class="row g-5 align-items-center">
+            <div class="col-lg-6">
+                <h2 class="text-bordo fw-bold mb-4">Comprometimento, ética e eficiência</h2>
+                <p class="lead">Fundada em 2025, a Hoffmann Contabilidade nasceu com o propósito de oferecer às empresas uma forma moderna, estratégica e descomplicada de administrar seus negócios.</p>
+                <div class="values-box">
+                    <p>Sob a direção do contador <strong>Pablo Hoffmann</strong> e da Desenvolvedora de Negócios <strong>Natália Debastiani</strong>, combinamos conhecimento técnico e atendimento humanizado. Acreditamos que o seu crescimento é o nosso melhor resultado!</p>
                 </div>
             </div>
-        </div>
-    </div>
-</section>
-
-<section class="py-16 bg-gray-50 border-t border-gray-200">
-    <div class="container mx-auto px-4">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-            <div class="p-8">
-                <div class="text-amarelo text-4xl mb-4"><i class="fas fa-handshake"></i></div>
-                <h3 class="text-xl font-bold text-bordo mb-2">Comprometimento</h3>
-                <p class="text-gray-600 text-sm">Foco total no sucesso e na saúde financeira da sua empresa.</p>
-            </div>
-            <div class="p-8">
-                <div class="text-amarelo text-4xl mb-4"><i class="fas fa-balance-scale"></i></div>
-                <h3 class="text-xl font-bold text-bordo mb-2">Ética</h3>
-                <p class="text-gray-600 text-sm">Transparência absoluta em todos os processos contábeis.</p>
-            </div>
-            <div class="p-8">
-                <div class="text-amarelo text-4xl mb-4"><i class="fas fa-bolt"></i></div>
-                <h3 class="text-xl font-bold text-bordo mb-2">Eficiência</h3>
-                <p class="text-gray-600 text-sm">Soluções digitais que poupam seu tempo e recursos.</p>
+            <div class="col-lg-6 text-center">
+                <img src="{{ url_for('static', filename='img/pablo_e_natalia.jpg') }}" alt="Pablo Hoffmann e Natália Debastiani" class="img-team-main">
+                <p class="mt-4 fw-bold" style="color: var(--bordo);">Pablo Hoffmann & Natália Debastiani</p>
             </div>
         </div>
     </div>
