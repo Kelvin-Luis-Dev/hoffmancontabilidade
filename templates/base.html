@@ -13,242 +13,185 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-    :root {
-        --bordo: #5b2622;
-        --amarelo: #dbba7e;
-        --branco: #ffffff;
-        --preto: #1a1a1a;
-        --transicao: all 0.3s ease;
+:root {
+    --bordo: #5b2622;
+    --amarelo: #dbba7e;
+    --branco: #ffffff;
+    --preto: #1a1a1a;
+    --transicao: all 0.3s ease;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+    background-color: #ffffff;
+    color: var(--preto);
+}
+
+/* --- Navbar Desktop --- */
+.navbar {
+    background-color: var(--bordo);
+    padding: 1.2rem 0;
+    border-bottom: 3px solid var(--amarelo);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.navbar-brand img {
+    height: 55px;
+    transition: var(--transicao);
+}
+
+.nav-link {
+    color: var(--branco) !important;
+    font-weight: 600;
+}
+
+.nav-link:hover {
+    color: var(--amarelo) !important;
+    transform: translateY(-1px);
+}
+
+.btn-fale {
+    background-color: var(--amarelo) !important;
+    color: var(--bordo) !important;
+    font-weight: 700 !important;
+    border-radius: 8px !important;
+    padding: 10px 22px !important;
+    margin-left: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: var(--transicao);
+    display: inline-block;
+    text-decoration: none;
+}
+
+.btn-fale:hover {
+    background-color: #c5a66d !important;
+    transform: scale(1.05);
+}
+
+/* --- Dropdown --- */
+.dropdown-menu {
+    background-color: var(--branco);
+    border: none;
+    border-top: 3px solid var(--amarelo);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    border-radius: 0 0 8px 8px;
+}
+.dropdown-item {
+    color: var(--bordo);
+    font-weight: 500;
+    padding: 10px 20px;
+    font-size: 0.9rem;
+}
+.dropdown-item:hover {
+    background-color: #f8f9fa;
+    color: var(--bordo);
+    padding-left: 25px;
+}
+
+/* --- Footer --- */
+footer {
+    background-color: var(--bordo);
+    color: var(--branco);
+    padding: 40px 0 20px;
+    border-top: 5px solid var(--amarelo);
+}
+.footer-title {
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+.footer-links a, footer p {
+    font-size: 0.85rem;
+    margin-bottom: 8px;
+}
+.footer-links a { color: var(--branco); text-decoration: none; transition: 0.3s; display: block; }
+.footer-links a:hover {
+    color: var(--amarelo);
+    padding-left: 8px;
+}
+footer .img-fluid {
+    max-height: 50px !important;
+}
+
+/* --- Redes Sociais e WhatsApp --- */
+.social-icons a {
+    font-size: 1.4rem;
+    color: var(--branco);
+    margin-right: 20px;
+    transition: var(--transicao);
+    display: inline-block;
+}
+.social-icons a:hover {
+    color: var(--amarelo);
+    transform: translateY(-3px);
+}
+
+.whatsapp-float {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: #25d366;
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    z-index: 2000;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    transition: var(--transicao);
+    text-decoration: none;
+}
+
+/* --- ÚNICO BLOCO MOBILE (Escala -5% e Correções) --- */
+@media (max-width: 991px) {
+    .navbar-brand img { height: 40px; }
+
+    .navbar-toggler {
+        padding: 0.45rem;
+        border: 1px solid rgba(255,255,255,0.4) !important;
     }
 
-    body {
-        font-family: 'Inter', sans-serif;
-        overflow-x: hidden;
-        background-color: #ffffff;
-        color: var(--preto);
+    .navbar-toggler-icon {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
     }
 
-    /* Navbar Desktop */
-    .navbar {
-        background-color: var(--bordo);
-        padding: 1.2rem 0;
-        border-bottom: 3px solid var(--amarelo);
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
-
-    .navbar-brand img {
-        height: 55px;
-        transition: var(--transicao);
-    }
-
-    .nav-link {
-        color: var(--branco) !important;
-        font-weight: 600;
-    }
-
-    .nav-link:hover {
-        color: var(--amarelo) !important;
-        transform: translateY(-1px);
-    }
-
-    .btn-fale {
-        background-color: var(--amarelo) !important;
-        color: var(--bordo) !important;
-        font-weight: 700 !important;
-        border-radius: 8px !important;
-        padding: 10px 22px !important;
-        margin-left: 15px;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        transition: var(--transicao);
-        display: inline-block;
-        text-decoration: none;
-    }
-
-    /* Responsividade para Mobile */
-    @media (max-width: 991px) {
-        .navbar-brand img { height: 45px; }
-
-        .navbar-toggler {
-            border: 1px solid rgba(255,255,255,0.2);
-        }
-
-        .navbar-toggler-icon {
-            filter: invert(1); /* Ícone branco */
-        }
-
-        .navbar-collapse {
-            background: var(--bordo);
-            padding: 25px;
-            margin-top: 15px;
-            border-radius: 15px;
-            border: 1px solid rgba(255,255,255,0.1);
-            text-align: left !important;
-        }
-
-        .navbar-nav {
-            align-items: flex-start !important; /* Alinha itens à esquerda */
-        }
-
-        .nav-item {
-            width: 100%;
-        }
-
-        .nav-link {
-            padding: 12px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-            text-align: left !important;
-            width: 100%;
-        }
-
-        .btn-fale {
-            margin: 20px 0 0 0 !important;
-            width: 100%;
-            text-align: center;
-            background-color: var(--amarelo) !important;
-            color: var(--bordo) !important;
-        }
-    }
-
-        .btn-fale:hover {
-            background-color: #c5a66d !important;
-            transform: scale(1.05);
-        }
-
-        /* Dropdown custom */
-        .dropdown-menu {
-            background-color: var(--branco);
-            border: none;
-            border-top: 3px solid var(--amarelo);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            border-radius: 0 0 8px 8px;
-        }
-        .dropdown-item {
-            color: var(--bordo);
-            font-weight: 500;
-            padding: 10px 20px;
-            font-size: 0.9rem;
-        }
-        .dropdown-item:hover {
-            background-color: #f8f9fa;
-            color: var(--bordo);
-            padding-left: 25px;
-        }
-
-        /* Footer Profissional */
-        footer {
-            background-color: var(--bordo);
-            color: var(--branco);
-            padding: 80px 0 30px;
-            border-top: 5px solid var(--amarelo);
-        }
-        .footer-title {
-            color: var(--amarelo);
-            font-weight: 700;
-            margin-bottom: 1.8rem;
-            text-transform: uppercase;
-            font-size: 1.1rem;
-        }
-        .footer-links a {
-            color: rgba(255,255,255,0.8);
-            text-decoration: none;
-            transition: var(--transicao);
-            display: block;
-            margin-bottom: 12px;
-        }
-        .footer-links a:hover {
-            color: var(--amarelo);
-            padding-left: 8px;
-        }
-
-        .social-icons a {
-            font-size: 1.4rem;
-            color: var(--branco);
-            margin-right: 20px;
-            transition: var(--transicao);
-            display: inline-block;
-        }
-        .social-icons a:hover {
-            color: var(--amarelo);
-            transform: translateY(-3px);
-        }
-
-        .whatsapp-float {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: #25d366;
-            color: white;
-            width: 60px;
-            height: 60px;
-            border-radius: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 32px;
-            z-index: 2000;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-            transition: var(--transicao);
-            text-decoration: none;
-        }
-        .whatsapp-float:hover {
-            transform: scale(1.1) rotate(10deg);
-            color: white;
-        }
-
-        /* Responsividade para Mobile */
-        @media (max-width: 991px) {
     .navbar-collapse {
         background: var(--bordo);
-        padding: 25px;
-        margin-top: 15px;
-        border-radius: 15px;
+        padding: 22px;
+        margin-top: 14px;
+        border-radius: 12px;
         border: 1px solid rgba(255,255,255,0.1);
-        /* Garante que o conteúdo interno não centralize */
         text-align: left !important;
     }
-    .navbar-nav {
-        /* Alinha os itens da lista à esquerda */
-        align-items: flex-start !important;
-    }
-    .nav-item {
-        width: 100%; /* Faz o item ocupar a largura total para facilitar o clique */
-    }
-            .nav-link {
-        padding: 12px 0;
+
+    .navbar-nav { align-items: flex-start !important; }
+
+    .nav-link {
+        padding: 11px 0;
+        font-size: 0.82rem;
         border-bottom: 1px solid rgba(255,255,255,0.05);
-        text-align: left !important; /* Força o texto para a esquerda */
         width: 100%;
-    }
-    /* Ajuste do Botão "Fale Conosco" no Mobile */
-    .btn-fale {
-        margin: 20px 0 0 0 !important;
-        width: 100%;
-        text-align: center; /* O texto dentro do botão pode continuar centralizado */
-        background-color: var(--amarelo) !important; /* Força a cor amarela */
-        color: var(--bordo) !important; /* Texto em bordo para contraste */
+        text-align: left !important;
     }
 
-    /* Ajuste definitivo do ícone hambúrguer para ficar BRANCO */
-    .navbar-toggler {
-        border: 1px solid rgba(255, 255, 255, 0.5) !important; /* Borda sutil branca */
-        padding: 0.5rem;
+    .btn-fale {
+        margin: 18px 0 0 0 !important;
+        padding: 9px 20px !important;
+        width: 100%;
+        font-size: 0.85rem;
+        text-align: center;
+        margin-left: 0 !important; /* Remove margem do desktop */
     }
-    .navbar-toggler-icon {
-        /* Remove a imagem padrão e coloca uma nova branca via código */
-        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
-        filter: none !important; /* Remove filtros antigos que podem cinzar o ícone */
-    }
-    /* Garantia extra: força a cor se o filtro falhar */
-    .navbar-dark .navbar-toggler-icon {
-        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
-    }
-            .btn-fale {
-                margin: 20px 0 0 0;
-                width: 100%;
-            }
-            .navbar-brand img { height: 45px; }
-        }
-    </style>
+
+    footer { padding: 30px 0 15px; }
+    .footer-title { margin-top: 15px; font-size: 0.9rem; }
+    .row.g-5 { --bs-gutter-y: 1.3rem; }
+}
+</style>
     {% block extra_css %}{% endblock %}
 </head>
 <body>
@@ -293,7 +236,7 @@
                     <img src="{{ url_for('static', filename='img/logoenome.png') }}" alt="Logo" class="img-fluid mb-4" style="max-height: 70px;">
                     <p class="opacity-75 leading-relaxed">Contabilidade e consultoria 100% digital, oferecendo soluções modernas, seguras e estratégicas para a gestão empresarial.</p>
                     <div class="mt-4">
-                        <p class="small fw-bold mb-1" style="color: var(--amarelo);">Responsável Técnico:</p>
+                        <p class="small fw-bold mb-1" style="color: var(--amarelo);">Contador</p>
                         <p class="small opacity-75">Pablo Hoffmann — CRC SC-048569/O</p>
                     </div>
                 </div>
@@ -308,7 +251,7 @@
                     <h5 class="footer-title">Contato</h5>
                     <div class="small">
                         <p class="mb-2"><i class="fab fa-whatsapp me-2" style="color: #25d366;"></i> (47) 9 8447-4038</p>
-                        <p class="mb-2"><i class="fas fa-envelope me-2" style="color: var(--amarelo);"></i> hoffmannconsultoria... @gmail.com</p>
+                        <p class="mb-2"><i class="fas fa-envelope me-2" style="color: var(--amarelo);"></i> hoffmannconsultoria@gmail.com</p>
                         <p class="mb-2"><i class="fas fa-clock me-2" style="color: var(--amarelo);"></i> Seg a Sex: 08h–18h</p>
                         <p class="mb-0"><i class="fas fa-map-marker-alt me-2" style="color: var(--amarelo);"></i> Atendimento 100% Digital</p>
                     </div>
