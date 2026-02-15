@@ -3,69 +3,109 @@
 {% block extra_css %}
 <style>
     :root {
-        --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
     }
 
-    /* Hero Section - Refinada */
+    /* Hero Section Minimalista */
     .hero {
-        background: linear-gradient(90deg, var(--bordo) 30%, rgba(91, 38, 34, 0.6) 100%),
-                    url("{{ url_for('static', filename='img/natiepablocapa.jpg') }}") center right / cover no-repeat;
-        padding: 120px 0;
-        color: white;
-        min-height: 85vh;
+        background-color: #ffffff;
+        padding: 80px 0;
+        min-height: 90vh;
         display: flex;
         align-items: center;
+        overflow: hidden;
     }
 
-    .hero h1 { font-size: clamp(2.5rem, 5vw, 3.8rem); font-weight: 800; line-height: 1.1; margin-bottom: 1.5rem; }
-    .hero span { color: var(--amarelo); }
-    .hero p { max-width: 550px; font-size: 1.15rem; opacity: 0.9; margin-bottom: 2.5rem; }
+    .hero h1 {
+        font-size: clamp(2.2rem, 5vw, 3.5rem);
+        font-weight: 800;
+        color: var(--preto);
+        line-height: 1.1;
+        margin-bottom: 1.5rem;
+    }
+    .hero h1 span { color: var(--bordo); } /* Destaque sutil em bordo */
 
-    /* Botões Modernizados */
-    .btn-custom { padding: 14px 30px; font-weight: 700; border-radius: 8px; transition: var(--transition); text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 10px; }
-    .btn-cta-primary { background-color: var(--amarelo); color: var(--bordo); border: 2px solid var(--amarelo); }
-    .btn-cta-primary:hover { background-color: transparent; color: var(--amarelo); transform: translateY(-3px); }
-    .btn-cta-outline { border: 2px solid white; color: white; }
-    .btn-cta-outline:hover { background: white; color: var(--bordo); transform: translateY(-3px); }
+    .hero p {
+        color: #555;
+        font-size: 1.2rem;
+        max-width: 500px;
+        margin-bottom: 2.5rem;
+        line-height: 1.6;
+    }
 
-    /* Seção Pablo Hoffmann */
-    .pablo-home { padding: 100px 0; background-color: #fff; }
-    .img-wrapper { position: relative; }
-    .img-pablo { border-radius: 20px; position: relative; z-index: 2; width: 100%; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
-    .img-wrapper::after { content: ''; position: absolute; top: 20px; left: -20px; width: 100%; height: 100%; border: 2px solid var(--amarelo); border-radius: 20px; z-index: 1; }
-
-    /* Cards de Serviços - Glassmorphism sutil */
-    .services-section { background-color: #f8f9fa; padding: 100px 0; }
-    .service-card {
-        border: 1px solid rgba(0,0,0,0.05);
-        background: #fff;
-        border-radius: 16px;
-        padding: 40px 30px;
-        height: 100%;
-        transition: var(--transition);
+    /* Imagem do Pablo - Tamanho Ajustado e Moldura */
+    .hero-img-container {
+        position: relative;
         display: flex;
-        flex-direction: column;
+        justify-content: center;
+        align-items: center; /* Centraliza a foto dentro da moldura */
+        padding: 20px;
     }
-    .service-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); border-color: var(--amarelo); }
-    .icon-box { width: 60px; height: 60px; background: rgba(91, 38, 34, 0.05); color: var(--bordo); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 25px; font-size: 1.5rem; transition: var(--transition); }
-    .service-card:hover .icon-box { background: var(--amarelo); color: var(--bordo); }
+    .img-pablo-hero {
+        max-width: 380px; /* Reduzi o tamanho fixo para não ficar gigante */
+        width: 100%;
+        height: auto;
+        z-index: 2;
+        position: relative;
+        border-radius: 15px; /* Leve arredondamento na foto para combinar */
+        filter: drop-shadow(0 15px 30px rgba(0,0,0,0.1));
+    }
+    /* A Moldura (Shape) agora tem o mesmo tamanho da foto */
+    .hero-shape {
+        position: absolute;
+        width: 98%;
+        max-width: 410px; /* Um pouco maior que a foto para criar a borda */
+        height: 98%;
+        background: #f8f9fa;
+        border-radius: 24px;
+        z-index: 1;
+        border: 1px solid rgba(0,0,0,0.05);
+        /* Detalhe de borda inferior para 'assentar' a imagem */
+        border-bottom: 4px solid var(--amarelo);
+    }
 
-    /* Diferenciais */
-    .diff-card { padding: 40px; border-radius: 15px; background: #fff; border: none; box-shadow: 0 5px 15px rgba(0,0,0,0.02); height: 100%; position: relative; overflow: hidden; }
-    .diff-card i { color: var(--amarelo); margin-bottom: 20px; display: block; }
-    .diff-card::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 0; background: var(--amarelo); transition: var(--transition); }
-    .diff-card:hover::before { height: 100%; }
 
-    /* Responsividade Extreme */
+    /* Botões Minimalistas */
+    .btn-main {
+        padding: 16px 35px;
+        font-weight: 700;
+        border-radius: 50px;
+        transition: var(--transition);
+        text-decoration: none;
+        display: inline-block;
+    }
+    .btn-bordo { background: var(--bordo); color: white; border: 2px solid var(--bordo); }
+    .btn-bordo:hover { background: #451c19; transform: translateY(-3px); box-shadow: 0 10px 20px rgba(91, 38, 34, 0.2); }
+
+    .btn-outline { border: 2px solid #ddd; color: var(--preto); margin-left: 10px; }
+    .btn-outline:hover { border-color: var(--bordo); color: var(--bordo); }
+
+    /* Seções de Texto e Valores */
+    .section-white { padding: 100px 0; background: #fff; }
+    .section-gray { padding: 100px 0; background: #fcfcfc; }
+
+    .value-card {
+        text-align: center;
+        padding: 30px;
+        border-radius: 20px;
+        background: white;
+        transition: var(--transition);
+    }
+    .value-card i { color: var(--amarelo); font-size: 2.5rem; margin-bottom: 20px; }
+
+    /* Pilares / Diferenciais */
+    .pilar-item {
+        border-left: 3px solid var(--amarelo);
+        padding-left: 20px;
+        margin-bottom: 30px;
+    }
+
     @media (max-width: 991px) {
-        .hero {
-            background: linear-gradient(rgba(91, 38, 34, 0.85), rgba(91, 38, 34, 0.85)),
-                        url("{{ url_for('static', filename='img/natiepablocapa.jpg') }}") center/cover;
-            text-align: center; padding: 80px 0;
-        }
-        .hero p { margin-left: auto; margin-right: auto; }
-        .hero .d-flex { justify-content: center; }
-        .img-wrapper { margin-top: 50px; max-width: 80%; margin-left: auto; margin-right: auto; }
+        .hero { text-align: center; padding: 40px 0; }
+        .hero p { margin: 0 auto 2rem; }
+        .hero-img-container { margin-top: 50px; }
+        .btn-outline { margin-left: 0; margin-top: 10px; width: 100%; }
+        .btn-bordo { width: 100%; }
     }
 </style>
 {% endblock %}
@@ -74,102 +114,100 @@
 
 <section class="hero">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-7">
-                <span class="text-uppercase fw-bold mb-3 d-block" style="color: var(--amarelo); letter-spacing: 3px; font-size: 0.9rem;">Estratégia & Inovação Contábil</span>
-                <h1>Transformamos números em <span>resultados reais.</span></h1>
-                <p>Contabilidade consultiva e digital para empresários que buscam segurança jurídica e crescimento acelerado.</p>
-                <div class="d-flex flex-wrap gap-3">
-                    <a href="{{ url_for('contato_get') }}" class="btn-custom btn-cta-primary">Começar agora <i class="fas fa-rocket"></i></a>
-                    <a href="{{ url_for('contato_get') }}" class="btn-custom btn-cta-outline">Ver planos</a>
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h6 class="text-uppercase fw-bold mb-3" style="color: var(--amarelo); letter-spacing: 2px;">Estratégia e Inovação</h6>
+                <h1>Transformamos números em <span>inteligência de negócio.</span></h1>
+                <p>Assessoria contábil completa para empresas de todos os portes. Cuidamos da burocracia para que você foque no crescimento e sucesso do seu negócio!</p>
+                <div class="d-flex flex-wrap gap-2">
+                    <a href="{{ url_for('contato_get') }}" class="btn-main btn-bordo">Conhecer a Hoffmann</a>
+                    <a href="https://wa.me/5547984474038" class="btn-main btn-outline">Fazer Orçamento</a>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="hero-img-container">
+                    <div class="hero-shape"></div>
+                    <img src="{{ url_for('static', filename='img/pablohome.jpg') }}" alt="Pablo Hoffmann" class="img-pablo-hero">
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<section class="pablo-home">
+<section class="section-gray">
     <div class="container">
-        <div class="row align-items-center g-5">
-            <div class="col-lg-5 order-2 order-lg-1">
-                <div class="img-wrapper">
-                    <img src="{{ url_for('static', filename='img/pablohome.png') }}" alt="Pablo Hoffmann" class="img-pablo">
-                </div>
-            </div>
-            <div class="col-lg-7 ps-lg-5 order-1 order-lg-2">
-                <h6 class="text-uppercase fw-bold text-muted mb-2">Presença e Tecnologia</h6>
-                <h2 class="display-6 fw-bold mb-4" style="color: var(--bordo);">O suporte que seu negócio merece.</h2>
-                <p class="lead text-dark mb-4">Unimos a agilidade da contabilidade digital com o olhar estratégico de <strong>Pablo Hoffmann</strong>.</p>
-                <p class="text-muted">Não somos apenas um escritório que entrega guias. Somos parceiros do seu crescimento, garantindo que sua empresa esteja sempre em conformidade e pagando o menor imposto possível dentro da lei.</p>
-                <div class="mt-4 pt-2">
-                    <a href="{{ url_for('sobre') }}" class="btn btn-dark btn-lg px-4" style="border-radius: 8px;">Conheça nossa história</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="services-section">
-    <div class="container">
-        <div class="text-center mb-5">
-            <h2 class="fw-bold display-6" style="color: var(--bordo);">Soluções Inteligentes</h2>
-            <p class="text-muted">Serviços especializados para cada fase da sua empresa</p>
-        </div>
-        <div class="row g-4">
-            {% for service in services %}
-            <div class="col-lg-3 col-md-6">
-                <div class="service-card">
-                    <div class="icon-box">
-                        <i class="fas fa-chart-line"></i> </div>
-                    <h5 class="fw-bold mb-3">{{ service.title }}</h5>
-                    <p class="text-muted small mb-4">{{ service.excerpt }}</p>
-                    <a href="{{ url_for('servicos', anchor=service.id) }}" class="mt-auto fw-bold text-decoration-none" style="color: var(--bordo);">
-                        Saiba mais <i class="fas fa-chevron-right ms-2" style="font-size: 0.8rem;"></i>
-                    </a>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-    </div>
-</section>
-
-<section class="py-5 bg-white">
-    <div class="container py-5">
-        <div class="row g-4">
-            <div class="col-lg-4">
-                <div class="diff-card">
-                    <i class="fas fa-fingerprint fa-2x"></i>
-                    <h4 class="fw-bold">DNA Consultivo</h4>
-                    <p class="text-muted mb-0">Analisamos seus dados para oferecer insights que geram economia e lucro.</p>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="diff-card">
-                    <i class="fas fa-shield-check fa-2x"></i>
-                    <h4 class="fw-bold">Rigor Fiscal</h4>
-                    <p class="text-muted mb-0">Segurança absoluta nos processos para você dormir tranquilo todas as noites.</p>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="diff-card">
-                    <i class="fas fa-bolt fa-2x"></i>
-                    <h4 class="fw-bold">100% Digital</h4>
-                    <p class="text-muted mb-0">Acesse documentos e fale com seu contador de qualquer lugar do mundo.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="py-5" style="background-color: var(--bordo);">
-    <div class="container py-5 text-center">
-        <div class="row justify-content-center">
+        <div class="row justify-content-center text-center mb-5">
             <div class="col-lg-8">
-                <h2 class="display-5 fw-bold text-white mb-4">Pronto para o próximo nível?</h2>
-                <p class="lead text-white-50 mb-5">Deixe a burocracia conosco e foque no que você faz de melhor: gerir seu negócio.</p>
-                <a href="{{ url_for('contato_get') }}" class="btn-custom btn-cta-primary btn-lg">Falar com um Especialista agora</a>
+                <h2 class="fw-bold mb-4" style="color: var(--bordo);">Moderna, Estratégica e Descomplicada.</h2>
+                <p class="lead">Fundada em 2025, a Hoffmann Contabilidade nasceu com o propósito de oferecer às empresas uma forma moderna de administrar seus negócios. Sob a direção do contador Pablo Hoffmann, combinamos conhecimento técnico e inovação.</p>
             </div>
         </div>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="value-card">
+                    <i class="fas fa-handshake"></i>
+                    <h5 class="fw-bold">Comprometimento</h5>
+                    <p class="text-muted small">Nossos valores norteiam cada processo, garantindo transparência e responsabilidade.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="value-card">
+                    <i class="fas fa-balance-scale"></i>
+                    <h5 class="fw-bold">Ética</h5>
+                    <p class="text-muted small">Acreditamos que uma contabilidade eficiente é um instrumento de segurança e conformidade.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="value-card">
+                    <i class="fas fa-bolt"></i>
+                    <h5 class="fw-bold">Eficiência</h5>
+                    <p class="text-muted small">Resultados consistentes que promovem o desenvolvimento contínuo dos nossos parceiros.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section-white">
+    <div class="container">
+        <div class="row g-5 align-items-center">
+            <div class="col-lg-6">
+                <h2 class="fw-bold mb-5" style="color: var(--bordo);">Como impulsionamos seu negócio</h2>
+
+                <div class="pilar-item">
+                    <h5 class="fw-bold">Assessoria Financeira Inteligente</h5>
+                    <p class="text-muted">Desenvolvemos relatórios gerenciais e análises de fluxo de caixa que visam identificar gargalos, reduzir custos e aumentar a margem de lucro através de estratégias <strong>adequadas</strong> e <strong>inteligentes</strong>.</p>
+                </div>
+
+                <div class="pilar-item">
+                    <h5 class="fw-bold">Conformidade e Burocracia</h5>
+                    <p class="text-muted">Fazemos emissão de certidões de débito, parcelamento de débitos, alterações contratuais, alvarás e regularização completa junto a órgãos públicos. Conte com a gente para lidar com as burocracias!</p>
+                </div>
+
+                <div class="pilar-item">
+                    <h5 class="fw-bold">Imposto de Renda</h5>
+                    <p class="text-muted">Garantimos apuração correta, conformidade legal e segurança. Atuamos na análise de dados e envio das declarações, reduzindo riscos e prevenindo inconsistências junto ao Fisco.</p>
+                </div>
+            </div>
+            <div class="col-lg-6 bg-light p-5 rounded-4">
+                <h3 class="fw-bold mb-4">O Diferencial Hoffmann</h3>
+                <p>Na Hoffmann, cada cliente é tratado como parceiro. Entender a necessidade do nosso cliente é a nossa prioridade! Nosso diferencial está baseado em três pilares essenciais:</p>
+                <ul class="list-unstyled">
+                    <li class="mb-3"><i class="fas fa-check-circle text-success me-2"></i> Atendimento personalizado</li>
+                    <li class="mb-3"><i class="fas fa-check-circle text-success me-2"></i> Compromisso com a conformidade</li>
+                    <li class="mb-3"><i class="fas fa-check-circle text-success me-2"></i> Suporte estratégico</li>
+                </ul>
+                <a href="{{ url_for('contato_get') }}" class="btn-main btn-bordo mt-3">Descobrir o Jeito Hoffmann</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-5" style="background: var(--bordo); color: white;">
+    <div class="container text-center py-4">
+        <h2 class="fw-bold mb-3">O seu crescimento é o nosso resultado.</h2>
+        <p class="opacity-75 mb-4">Garantimos que sua empresa esteja 100% em dia com o fisco através de uma contabilidade que é aliada da sua gestão.</p>
+        <a href="https://wa.me/5547984474038" class="btn-main" style="background: var(--amarelo); color: var(--bordo);">Falar diretamente com Pablo Hoffmann</a>
     </div>
 </section>
 
