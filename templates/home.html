@@ -23,7 +23,7 @@
         line-height: 1.1;
         margin-bottom: 1.5rem;
     }
-    .hero h1 span { color: var(--bordo); } /* Destaque sutil em bordo */
+    .hero h1 span { color: var(--bordo); }
 
     .hero p {
         color: #555;
@@ -31,6 +31,7 @@
         max-width: 500px;
         margin-bottom: 2.5rem;
         line-height: 1.6;
+        text-align: justify;
     }
 
     /* Imagem do Pablo - Tamanho Ajustado e Moldura */
@@ -38,37 +39,35 @@
         position: relative;
         display: flex;
         justify-content: center;
-        align-items: center; /* Centraliza a foto dentro da moldura */
+        align-items: center;
         padding: 20px;
     }
     .img-pablo-hero {
-        max-width: 380px; /* Reduzi o tamanho fixo para não ficar gigante */
+        max-width: 380px;
         width: 100%;
         height: auto;
         z-index: 2;
         position: relative;
-        border-radius: 15px; /* Leve arredondamento na foto para combinar */
+        border-radius: 15px;
         filter: drop-shadow(0 15px 30px rgba(0,0,0,0.1));
     }
-    /* A Moldura (Shape) agora tem o mesmo tamanho da foto */
     .hero-shape {
         position: absolute;
         width: 98%;
-        max-width: 410px; /* Um pouco maior que a foto para criar a borda */
+        max-width: 410px;
         height: 98%;
         background: #f8f9fa;
         border-radius: 24px;
         z-index: 1;
         border: 1px solid rgba(0,0,0,0.05);
-        /* Detalhe de borda inferior para 'assentar' a imagem */
         border-bottom: 4px solid var(--amarelo);
     }
 
-
-    /* Botões Minimalistas */
+    /* Botões Desktop */
     .btn-main {
-        padding: 16px 35px;
+        padding: 12px 28px;
         font-weight: 700;
+        font-size: 0.95rem;
         border-radius: 50px;
         transition: var(--transition);
         text-decoration: none;
@@ -92,20 +91,77 @@
         transition: var(--transition);
     }
     .value-card i { color: var(--amarelo); font-size: 2.5rem; margin-bottom: 20px; }
+    .value-card p { text-align: justify; }
 
-    /* Pilares / Diferenciais */
     .pilar-item {
         border-left: 3px solid var(--amarelo);
         padding-left: 20px;
         margin-bottom: 30px;
     }
+    .pilar-item p { text-align: justify; }
 
+    .bg-light p { text-align: justify; }
+
+    /* --- RESPONSIVIDADE MOBILE OTIMIZADA --- */
     @media (max-width: 991px) {
-        .hero { text-align: center; padding: 40px 0; }
-        .hero p { margin: 0 auto 2rem; }
-        .hero-img-container { margin-top: 50px; }
-        .btn-outline { margin-left: 0; margin-top: 10px; width: 100%; }
-        .btn-bordo { width: 100%; }
+        .hero {
+            padding: 40px 0;
+            min-height: auto;
+        }
+
+        /* AJUSTE DE MARGENS: Garante que o texto não encoste nas laterais */
+        .container {
+            padding-left: 30px !important;
+            padding-right: 30px !important;
+        }
+
+        .hero-img-container { display: none !important; }
+
+        .hero h1,
+        .section-gray h2,
+        .section-white h2,
+        .py-5 h2 {
+            text-align: left !important;
+            font-size: 1.6rem !important;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            margin: 0 0 1.5rem 0;
+            font-size: 0.95rem;
+            text-align: justify;
+        }
+
+        /* AJUSTE: Botões um do lado do outro no mobile */
+        .d-flex.flex-wrap {
+            display: flex !important;
+            flex-direction: row !important; /* Lado a lado */
+            justify-content: flex-start !important;
+            gap: 10px !important;
+        }
+
+        .btn-main {
+            padding: 10px 18px !important; /* Mais curto horizontalmente */
+            font-size: 0.8rem !important;
+            width: auto !important; /* Não ocupa a largura toda */
+            min-width: 0 !important; /* Remove largura mínima excessiva */
+            margin-bottom: 0;
+            margin-left: 0 !important;
+            flex: 0 1 auto; /* Permite encolher se necessário */
+        }
+
+        .section-white, .section-gray { padding: 40px 0; }
+
+        .value-card { padding: 20px; margin-bottom: 15px; }
+        .value-card p { text-align: justify; }
+
+        .bg-light.p-4 { padding: 25px !important; }
+
+        .py-5 { padding: 30px 0 !important; text-align: left !important; }
+        .py-5 p { text-align: justify; margin: 0 0 1.5rem 0 !important; }
+
+        /* Botão final também lado a lado se necessário */
+        .py-5 .text-start a { width: auto !important; display: inline-block; }
     }
 </style>
 {% endblock %}
@@ -116,9 +172,9 @@
     <div class="container">
         <div class="row align-items-center">
             <div class="col-lg-6">
-                <h6 class="text-uppercase fw-bold mb-3" style="color: var(--amarelo); letter-spacing: 2px;">Estratégia e Inovação</h6>
-                <h1>Transformamos números em <span>inteligência de negócio.</span></h1>
-                <p>Assessoria contábil completa para empresas de todos os portes. Cuidamos da burocracia para que você foque no crescimento e sucesso do seu negócio!</p>
+                <h6 class="text-uppercase fw-bold mb-3" style="color: var(--amarelo); letter-spacing: 2px;">Seja bem-vindo</h6>
+                <h1><span>Estratégias para negócios de sucesso</span></h1>
+                <p>Assessoria completa para empresas e pessoas físicas. Cuidamos da parte tributária, fiscal e folha para você focar no crescimento e sucesso do seu negócio!</p>
                 <div class="d-flex flex-wrap gap-2">
                     <a href="{{ url_for('contato_get') }}" class="btn-main btn-bordo">Conhecer a Hoffmann</a>
                     <a href="https://wa.me/5547984474038" class="btn-main btn-outline">Fazer Orçamento</a>
@@ -136,32 +192,32 @@
 
 <section class="section-gray">
     <div class="container">
-        <div class="row justify-content-center text-center mb-5">
-            <div class="col-lg-8">
-                <h2 class="fw-bold mb-4" style="color: var(--bordo);">Moderna, Estratégica e Descomplicada.</h2>
-                <p class="lead">Fundada em 2025, a Hoffmann Contabilidade nasceu com o propósito de oferecer às empresas uma forma moderna de administrar seus negócios. Sob a direção do contador Pablo Hoffmann, combinamos conhecimento técnico e inovação.</p>
+        <div class="row justify-content-center mb-4">
+            <div class="col-lg-8 text-lg-start">
+                <h2 class="fw-bold mb-3" style="color: var(--bordo);">Moderna, Estratégica e Descomplicada.</h2>
+                <p class="lead" style="text-align: justify; font-size: 1rem;">Fundada em 2025, a Hoffmann Contabilidade nasceu com o propósito de oferecer às empresas uma forma moderna de administrar seus negócios. Sob a direção do contador Pablo Hoffmann, combinamos conhecimento técnico e inovação.</p>
             </div>
         </div>
-        <div class="row g-4">
+        <div class="row g-3">
             <div class="col-md-4">
                 <div class="value-card">
                     <i class="fas fa-handshake"></i>
                     <h5 class="fw-bold">Comprometimento</h5>
-                    <p class="text-muted small">Nossos valores norteiam cada processo, garantindo transparência e responsabilidade.</p>
+                    <p class="text-muted small">Nossos valores norteiam cada processo, garantindo transparência e responsabilidade e resultados consistentes.</p>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="value-card">
                     <i class="fas fa-balance-scale"></i>
                     <h5 class="fw-bold">Ética</h5>
-                    <p class="text-muted small">Acreditamos que uma contabilidade eficiente é um instrumento de segurança e conformidade.</p>
+                    <p class="text-muted small">Acreditamos que uma contabilidade eficiente é um instrumento de segurança e conformidade e desenvolvimento contínuo.</p>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="value-card">
                     <i class="fas fa-bolt"></i>
                     <h5 class="fw-bold">Eficiência</h5>
-                    <p class="text-muted small">Resultados consistentes que promovem o desenvolvimento contínuo dos nossos parceiros.</p>
+                    <p class="text-muted small">Resultados consistentes que promovem o desenvolvimento contínuo dos nossos parceiros e o crescimento sustentável.</p>
                 </div>
             </div>
         </div>
@@ -172,42 +228,43 @@
     <div class="container">
         <div class="row g-5 align-items-center">
             <div class="col-lg-6">
-                <h2 class="fw-bold mb-5" style="color: var(--bordo);">Como impulsionamos seu negócio</h2>
-
+                <h2 class="fw-bold mb-4" style="color: var(--bordo);">Como impulsionamos seu negócio</h2>
                 <div class="pilar-item">
                     <h5 class="fw-bold">Assessoria Financeira Inteligente</h5>
                     <p class="text-muted">Desenvolvemos relatórios gerenciais e análises de fluxo de caixa que visam identificar gargalos, reduzir custos e aumentar a margem de lucro através de estratégias <strong>adequadas</strong> e <strong>inteligentes</strong>.</p>
                 </div>
-
                 <div class="pilar-item">
                     <h5 class="fw-bold">Conformidade e Burocracia</h5>
                     <p class="text-muted">Fazemos emissão de certidões de débito, parcelamento de débitos, alterações contratuais, alvarás e regularização completa junto a órgãos públicos. Conte com a gente para lidar com as burocracias!</p>
                 </div>
-
                 <div class="pilar-item">
                     <h5 class="fw-bold">Imposto de Renda</h5>
                     <p class="text-muted">Garantimos apuração correta, conformidade legal e segurança. Atuamos na análise de dados e envio das declarações, reduzindo riscos e prevenindo inconsistências junto ao Fisco.</p>
                 </div>
             </div>
-            <div class="col-lg-6 bg-light p-5 rounded-4">
-                <h3 class="fw-bold mb-4">O Diferencial Hoffmann</h3>
-                <p>Na Hoffmann, cada cliente é tratado como parceiro. Entender a necessidade do nosso cliente é a nossa prioridade! Nosso diferencial está baseado em três pilares essenciais:</p>
-                <ul class="list-unstyled">
-                    <li class="mb-3"><i class="fas fa-check-circle text-success me-2"></i> Atendimento personalizado</li>
-                    <li class="mb-3"><i class="fas fa-check-circle text-success me-2"></i> Compromisso com a conformidade</li>
-                    <li class="mb-3"><i class="fas fa-check-circle text-success me-2"></i> Suporte estratégico</li>
+            <div class="col-lg-6 bg-light p-4 rounded-4 shadow-sm">
+                <h3 class="fw-bold mb-3" style="font-size: 1.3rem;">O Diferencial Hoffmann</h3>
+                <p style="font-size: 0.9rem;">Na Hoffmann, cada cliente é tratado como parceiro. Entender a necessidade do nosso cliente é a nossa prioridade! Nosso diferencial está baseado em três pilares essenciais:</p>
+                <ul class="list-unstyled small">
+                    <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> Atendimento personalizado</li>
+                    <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> Compromisso com a conformidade</li>
+                    <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> Suporte estratégico</li>
                 </ul>
-                <a href="{{ url_for('contato_get') }}" class="btn-main btn-bordo mt-3">Descobrir o Jeito Hoffmann</a>
+                <div class="text-start">
+                    <a href="{{ url_for('contato_get') }}" class="btn-main btn-bordo mt-2">Descobrir o Jeito Hoffmann</a>
+                </div>
             </div>
         </div>
     </div>
 </section>
 
 <section class="py-5" style="background: var(--bordo); color: white;">
-    <div class="container text-center py-4">
+    <div class="container text-lg-start py-2">
         <h2 class="fw-bold mb-3">O seu crescimento é o nosso resultado.</h2>
-        <p class="opacity-75 mb-4">Garantimos que sua empresa esteja 100% em dia com o fisco através de uma contabilidade que é aliada da sua gestão.</p>
-        <a href="https://wa.me/5547984474038" class="btn-main" style="background: var(--amarelo); color: var(--bordo);">Falar diretamente com Pablo Hoffmann</a>
+        <p class="opacity-75 mb-4" style="text-align: justify; max-width: 700px; font-size: 0.95rem;">Garantimos que sua empresa esteja 100% em dia com o fisco através de uma contabilidade que é aliada da sua gestão e focada em resultados reais.</p>
+        <div class="text-start">
+            <a href="https://wa.me/5547984474038" class="btn-main" style="background: var(--amarelo); color: var(--bordo);">Falar diretamente com Pablo Hoffmann</a>
+        </div>
     </div>
 </section>
 
