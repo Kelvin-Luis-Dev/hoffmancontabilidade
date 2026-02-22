@@ -113,6 +113,25 @@ footer {
 footer .img-fluid {
     max-height: 50px !important;
 }
+        /* Correção para links de telefone e e-mail no rodapé */
+footer a, footer p {
+    color: var(--branco) !important;
+    text-decoration: none !important;
+}
+
+/* Força a quebra de texto em e-mails longos no mobile */
+.text-break {
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+}
+
+/* Ajuste de coluna para o contato não espremer no mobile */
+@media (max-width: 576px) {
+    .footer-contact-column {
+        width: 100% !important;
+        flex: 0 0 100% !important;
+    }
+}
 
 /* --- Redes Sociais e WhatsApp --- */
 .social-icons a {
@@ -247,15 +266,30 @@ footer .img-fluid {
                     <a href="{{ url_for('servicos') }}">Nossos Serviços</a>
                     <a href="{{ url_for('contato_get') }}">Falar com Consultor</a>
                 </div>
-                <div class="col-lg-3 col-6">
-                    <h5 class="footer-title">Contato</h5>
-                    <div class="small">
-                        <p class="mb-2"><i class="fab fa-whatsapp me-2" style="color: #25d366;"></i> (47) 9 8447-4038</p>
-                        <p class="mb-2"><i class="fas fa-envelope me-2" style="color: var(--amarelo);"></i> hoffmannconsultoria@gmail.com</p>
-                        <p class="mb-2"><i class="fas fa-clock me-2" style="color: var(--amarelo);"></i> Seg a Sex: 08h–18h</p>
-                        <p class="mb-0"><i class="fas fa-map-marker-alt me-2" style="color: var(--amarelo);"></i> Atendimento 100% Digital</p>
-                    </div>
-                </div>
+                <div class="col-lg-3 col-6 footer-contact-column">
+    <h5 class="footer-title">Contato</h5>
+    <div class="small">
+        <p class="mb-2">
+            <i class="fab fa-whatsapp me-2" style="color: var(--amarelo);"></i> 
+            <a href="tel:47984474038" style="color: inherit;">(47) 9 8447-4038</a>
+        </p>
+        
+        <p class="mb-2 text-break">
+            <i class="fas fa-envelope me-2" style="color: var(--amarelo);"></i> 
+            hoffmannconsultoria@gmail.com
+        </p>
+        
+        <p class="mb-2">
+            <i class="fas fa-clock me-2" style="color: var(--amarelo);"></i> 
+            Seg a Sex: 08h–18h
+        </p>
+        
+        <p class="mb-0">
+            <i class="fas fa-map-marker-alt me-2" style="color: var(--amarelo);"></i> 
+            Atendimento 100% Digital
+        </p>
+    </div>
+</div>
                 <div class="col-lg-3">
                     <h5 class="footer-title">Siga-nos</h5>
                     <div class="social-icons mb-4">
